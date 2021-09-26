@@ -1,5 +1,9 @@
 <!doctype html>
+<?php
 
+
+
+?>
 
 <html lang="en">
   <head>
@@ -17,7 +21,46 @@
 		<link rel="stylesheet" href="css/style.css">
 
   </head>
+  <style>
+body {margin:150;}
+
+.navbar {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.navbar a:hover {
+  background: #ddd;
+  color: black;
+}
+
+.main {
+  padding: 16px;
+  margin-top: 150px;
+  height: 1500px; /* Used in this example to enable scrolling */
+}
+</style>
   <body>
+
+  <div class="navbar">
+  <a href="index.php">Home</a>
+  <a href="#news">News</a>
+  <a href="#contact">Contact</a>
+</div>
+  
     <section>
       <div class="jumbotron jumbotron-fluid">
         <div class="container">

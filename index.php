@@ -1,4 +1,7 @@
 <!doctype html>
+<?php
+require('connection.php')
+?>
 <html lang="en">
   <head>
   	<title>Book Store</title>
@@ -35,11 +38,26 @@
         </div>
 	  		<h1><a href="index.html" class="logo"> Book Store</a></h1>
         <ul class="list-unstyled components mb-5">
+<?php if(isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']!='') {
+  
+  $sql = "select name from register where email = '{$_SESSION['USERNAME']}'";
+  $res = mysqli_query($conn,$sql);
+  
+  $custname = " ";
+  while ($x = mysqli_fetch_assoc($res))
+  {
+  $custname = $x['name'];
+  }
+?> 
+        <li class="">
+            <span class="fa fa-login mr-3"></span><?php echo $custname; ?>
+          </li>
+<?php }?>
           <li class="active">
             <a href="#"><span class="fa fa-home mr-3"></span> Home</a>
           </li>
           <li>
-              <a href="login.php"><span class="fa fa-user mr-3"></span> Dashboard</a>
+              <a href="dash.php"><span class="fa fa-user mr-3"></span> Dashboard</a>
           </li>
           <li>
             <a href="#"><span class="fa fa-sticky-note mr-3"></span> Search Books</a>
