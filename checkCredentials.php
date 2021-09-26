@@ -10,8 +10,8 @@ require('connection.php');
     echo $count;
   if ($count > 0)
   {
-    $_SESSION['ADMIN_LOGIN']='yes';
-    $_SESSION['ADMIN_USERNAME']=$username;
+    $_SESSION['LOGIN']='yes';
+    $_SESSION['USERNAME']=$username;
     header('location:dash.php'); 
  }
  else{

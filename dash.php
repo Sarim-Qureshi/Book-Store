@@ -23,7 +23,7 @@ require('always.php');
     <section>
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
-          <h1 class="display-4">Hello  <?php echo $_SESSION['ADMIN_USERNAME']; ?></h1>
+          <h1 class="display-4">Hello  <?php echo $_SESSION['USERNAME']; ?></h1>
           <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
           <a href = "logout.php">Logout</a>
         </div>

@@ -1,7 +1,7 @@
 <?php
 require('connection.php');
 
-if(isset($_SESSION['ADMIN_LOGIN']) && $_SESSION['ADMIN_LOGIN']!=''){
+if(isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']!=''){
 
 }else{
 	header('location:login.php');
