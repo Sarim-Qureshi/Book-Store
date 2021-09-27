@@ -9,7 +9,7 @@ if (require('always.php'))
   $custname = " ";
   while ($x = mysqli_fetch_assoc($res))
   {
-  $custname = $x['name'];
+  $custname = " ".$x['name'];
   }
   
 }
@@ -33,6 +33,19 @@ if (require('always.php'))
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="stylesheet" href="css/style.css">
 
+    <style>
+      a{
+        text-decoration: none;
+        color:#fff;
+      }
+      a:link{
+        color: #fff;
+      }
+      a:visited{
+        color: #fff;
+      }
+
+    </style>
   </head>
   <body>
 
@@ -51,10 +64,10 @@ if (require('always.php'))
         <li class="">
             <span class="fa fa-login mr-3"></span><?php echo $custname; ?>
           </li>
-          <li class="active">
+          <li >
             <a href="index.php"><span class="fa fa-home mr-3"></span> Home</a>
           </li>
-          <li>
+          <li class="active">
               <a href="dash.php"><span class="fa fa-user mr-3"></span> Dashboard</a>
           </li>
           <li>
@@ -80,6 +93,18 @@ if (require('always.php'))
 
 
     </div>
+    <footer class="bg-dark text-center text-white">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <a href="">About Us</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="">Contact Us</a>
+     
+     
+      
+      </div>
+      <!-- Grid container -->
+    
       <!-- Copyright -->
       <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
         © <script>document.write(new Date().getFullYear())</script> Copyright: Book Store

@@ -37,14 +37,31 @@
         }
         </script>
   <style>
+
+     a{
+        text-decoration: none;
+        color:#fff;
+      }
+      a:link{
+        color: #fff;
+      }
+      a:visited{
+        color: #fff;
+      }
+
+
+
+
+
 body {margin:150;}
 
 .navbar {
   overflow: hidden;
   background-color: #333;
-  position: fixed;
+  position: sticky;
   top: 0;
   width: 100%;
+  z-index: 10;
 }
 
 .navbar a {
@@ -67,6 +84,9 @@ body {margin:150;}
   margin-top: 150px;
   height: 1500px; /* Used in this example to enable scrolling */
 }
+
+
+
 </style>
   </head>
   <body>
@@ -79,8 +99,8 @@ body {margin:150;}
 
     <section>
       <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-          <h1 class="display-4">Register Page</h1>
+        <div class="container" id="jumbo">
+          <h1 class="display-4 ">Register Page</h1>
           <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
         </div>
       </div>
@@ -88,7 +108,7 @@ body {margin:150;}
 
     <section>
       <div class = "container">
-      <div class = "card mb-5" style="z-index: 1;">
+      <div class = "card mb-5">
         <div class = "card-body">
     <form method = "POST" action = "" name = "register" onsubmit = "return validate()">
       <div class = "container">
@@ -99,43 +119,57 @@ body {margin:150;}
           <div class = "col-sm-6">
             
             <div class = "form-group">
-              <div class = "col-sm-5">
-                <label class="form-check-label" for="fname">Name</label>
-                <input type="text" id="name" name="name" required>
+              <div class = "col-sm-6">
+                <label class="form-check-label" for="fname">Name</label><br>
+                <input type="text" id="name" name="name" required><br>
               </div>
             </div>
             <div class = "form-group">
-              <div class = "col-sm-5">
-              <label class="form-check-label" for="lname">Email</label>
-              <input  type="email" id="email" name="email" required>
+              <div class = "col-sm-6">
+              <label class="form-check-label" for="lname">Email</label><br>
+              <input  type="email" id="email" name="email" required><br>
             </div>
             <div class = "form-group">
-              <div class = "col-sm-5">
-              <label class="form-check-label" for="lname">Phone Number</label>
-              <input  type="text" id="phno" name="phno" required maxlength = 10>
+              <div class = "col-sm-6">
+              <label class="form-check-label" for="lname">Phone Number</label><br>
+              <input  type="text" id="phno" name="phno" required maxlength = 10><br>
             </div>
             <div class = "form-group">
-              <div class = "col-sm-5">
-              <label class="form-check-label" for="lname">PASSWORD</label>
-              <input  type="password" id="pass" name="pass" required>
+              <div class = "col-sm-6">
+              <label class="form-check-label" for="lname">Password</label><br>
+              <input  type="password" id="pass" name="pass" required><br>
             </div>
             <div class = "form-group">
-              <div class = "col-sm-5">
-              <label class="form-check-label" for="lname">Repeat Password</label>
-              <input  type="password" id="rpass" name="rpass" required>
+              <div class = "col-sm-6">
+              <label class="form-check-label" for="lname">Repeat Password</label><br>
+              <input  type="password" id="rpass" name="rpass" required><br>
             </div>
 
-            <div class = "form-group" style="margin-top: 50px;">
-            <div class = "col-sm-5" >
-             <input type = "submit" value = "Register" name = "submit">
+
+            <div class = "form-group" style="margin-top:10px">
+            <div class = "col-sm-8" >
+              <input class = "btn btn-success" name="submit" type="submit" value="Register"><br>
           </div>
         </div>
+
+        <div class = "form-group" >
+            <div class = "col-sm-8" >
+              <button class = "btn btn-outline-primary" ><a href = "login.php">Already have an new account?</a></button>
+          </div>
+        </div>
+
+
+            <!-- <div class = "form-group">
+            <div class = "col-sm-6" >
+             <input type = "submit" value = "Register" name = "submit">
+          </div>
+        </div> -->
           </div>
          
 
          
 
-        </form>
+        <!-- </form> -->
             
           </div>
         </div>
@@ -147,11 +181,29 @@ body {margin:150;}
   </div>
 </div>
     </section>
+    <footer class="bg-dark text-center text-white">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <a href="">About Us</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="">Contact Us</a>
+     
+     
+      
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © <script>document.write(new Date().getFullYear())</script> Copyright: Book Store
+      </div>
+      <!-- Copyright -->
+    </footer>
   </body>
 </html>
 <?php
 $conn = mysqli_connect("localhost","root","","bookstore");
-if ($_REQUEST['submit']){
+if ($_SERVER['REQUEST_METHOD']=='POST'){
 
         $fullname = $_POST['name'];
         $email = $_POST['email'];

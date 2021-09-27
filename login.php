@@ -1,9 +1,5 @@
+
 <!doctype html>
-<?php
-
-
-
-?>
 
 <html lang="en">
   <head>
@@ -22,12 +18,29 @@
 
   </head>
   <style>
+
+     a{
+        text-decoration: none;
+        color:#fff;
+      }
+      a:link{
+        color: #fff;
+      }
+      a:visited{
+        color: #fff;
+      }
+
+
+
+
+
 body {margin:150;}
 
 .navbar {
   overflow: hidden;
   background-color: #333;
-  position: fixed;
+  position: sticky;
+  z-index: 10;
   top: 0;
   width: 100%;
 }
@@ -52,6 +65,21 @@ body {margin:150;}
   margin-top: 150px;
   height: 1500px; /* Used in this example to enable scrolling */
 }
+
+
+/* @media screen and (max-width: 767px)
+ {
+#jumbo{
+  margin-top: 10%;
+}
+}
+@media (min-width:1281px) {
+  #jumbo{
+  margin-top: 2%;
+}
+} */
+
+
 </style>
   <body>
 
@@ -63,7 +91,7 @@ body {margin:150;}
   
     <section>
       <div class="jumbotron jumbotron-fluid">
-        <div class="container">
+        <div class="container" id="jumbo">
           <h1 class="display-4">Login Page</h1>
           <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
         </div>
@@ -72,7 +100,7 @@ body {margin:150;}
 
     <section>
       <div class = "container">
-      <div class = "card mb-5" style="z-index: 1;">
+      <div class = "card mb-5" >
         <div class = "card-body">
 
         
@@ -83,32 +111,33 @@ body {margin:150;}
             <img src = "https://image.shutterstock.com/image-vector/library-book-shelves-cartoon-vector-260nw-1388485544.jpg" height = "100%" width = "100%">
           </div>
           <div class = "col-sm-6">
-            <form action="/action_page.php">
+
+            <!-- <form method="POST" action="checkCredentials.php"> -->
             <div class = "form-group">
-              <div class = "col-sm-5">
-                <label class="form-check-label" for="fname">Username</label>
-                <input type="text" id="username" name="username" required>
+              <div class = "col-sm-6">
+                <label class="form-check-label" for="fname">Email:</label><br>
+                <input type="text" id="username" name="username" required><br>
               </div>
             </div>
             <div class = "form-group">
-              <div class = "col-sm-5">
-              <label class="form-check-label" for="lname">Password:</label>
-              <input  type="password" id="pass" name="password" required>
+              <div class = "col-sm-6">
+              <label class="form-check-label" for="lname">Password:</label><br>
+              <input  type="password" id="pass" name="password" required><br>
             </div>
           </div>
           <div class = "form-group">
-            <div class = "col-sm-5">
-              <input type = "submit" class = "btn btn-primary" value = "Submit">
+            <div class = "col-sm-6">
+              <input type = "submit" class = "btn btn-primary" value = "Login"><br>
             </div>
           </div>
 
-          <div class = "form-group" style="margin-top: 50px;">
+          <div class = "form-group" >
             <div class = "col-sm-8" >
-              <button class = "btn btn-primary" ><a href = "register.php">Create a new  account</a></button>
+              <button class = "btn btn-outline-success" ><a href = "register.php">Create a new  account</a></button>
           </div>
         </div>
 
-        </form>
+        <!-- </form> -->
             
           </div>
         </div>
@@ -120,5 +149,25 @@ body {margin:150;}
   </div>
 </div>
     </section>
+    <footer class="bg-dark text-center text-white">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <a href="">About Us</a>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <a href="">Contact Us</a>
+     
+     
+      
+      </div>
+      <!-- Grid container -->
+    
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © <script>document.write(new Date().getFullYear())</script> Copyright: Book Store
+      </div>
+      <!-- Copyright -->
+    </footer>
+    
   </body>
 </html>
+
