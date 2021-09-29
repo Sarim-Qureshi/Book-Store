@@ -120,18 +120,33 @@ body {margin:150;}
  
 
   ?>
-
-
-
     <section>
       <div class = "container">
       <div class = "card mb-5" >
         <div class = "card-body">
 
         <div class="search-box">
-        <input type="text" autocomplete="off" placeholder="Search Book..." onchange = "showTable()" id = "search"/>
+        <input type="text" autocomplete="off" placeholder="Search Book..."  id = "search"/>
+        <button class = "btn btn-primary" name = "search" onclick = "showTable()">Search</button>
         <div class="result"></div>
-        <div id = "txtHint"></div>
+   
+        <table class="table table-hover">
+         
+    <thead>
+      <tr>
+    
+        <th>Book Name</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id = "table_data">
+
+</tbody>
+</table>
+        </div>
     </div>
 </section>
 
@@ -160,29 +175,29 @@ $(document).ready(function(){
     });
 });
 
-
    function showTable(){
+     var str = document.getElementById("search").value;
+  
     var xhttp;
   if (str == "") {
-    document.getElementById("txtHint").innerHTML = "";
+    document.getElementById("table_data").innerHTML = "";
     return;
   }
   xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-    document.getElementById("txtHint").innerHTML = this.responseText;
+    document.getElementById("table_data").innerHTML = this.responseText;
 
     }
   };
-  xhttp.open("GET", "search.php?q="+str, true);
+  xhttp.open("GET", "search1.php?q="+str, true);
   xhttp.send();
 
    }
 
-
-
-
-
+  function buyBook(){
+    alert("Its working");
+  }
 
 
 
