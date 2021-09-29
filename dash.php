@@ -2,7 +2,7 @@
 // require('connection.php');
 if (require('always.php'))
 {
-
+ 
   $sql = "select name from register where email = '{$_SESSION['USERNAME']}'";
   $res = mysqli_query($conn,$sql);
   
@@ -71,10 +71,10 @@ if (require('always.php'))
               <a href="dash.php"><span class="fa fa-user mr-3"></span> Dashboard</a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Search Books</a>
+            <a href="buybooks.php"><span class="fa fa-sticky-note mr-3"></span> Search Books</a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Sell Books</a>
+            <a href="sellbooks.php"><span class="fa fa-sticky-note mr-3"></span> Sell Books</a>
           </li>
           <li>
             <a href="#"><span class="fa fa-paper-plane mr-3"></span> Discussion Forum</a>
@@ -89,6 +89,88 @@ if (require('always.php'))
 
     	</nav>
      
+      <div class = "container mt-5">
+      <div class = "card card-body">
+      <?php
+      
+      $conn = mysqli_connect("localhost","root","","bookstore");
+$cuby = "";
+$sql = "select count(uploaded_by) as cuby from entrybook where uploaded_by = '{$_SESSION['USERNAME']}'";
+$res = mysqli_query($conn,$sql);
+while ($x = mysqli_fetch_assoc($res))
+{
+  $cuby = $x['cuby'];
+}
+      ?>
+
+      <h1>Your Uploaded books Total No: <?php echo $cuby ?></h1> 
+
+      <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Book ID</th>
+        <th>Book Name</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <?php
+
+$conn = mysqli_connect("localhost","root","","bookstore");
+$cuby = "";
+      $sql = "select * from entrybook where uploaded_by = '{$_SESSION['USERNAME']}'";
+      $res = mysqli_query($conn,$sql);
+     
+      while ($row = mysqli_fetch_assoc($res))
+      {
+          $bname = $row['book_name'];
+          $bid = $row['bookid'];
+          $auth = $row['author'];
+          $category = $row['category'];
+          $price = $row['price'];
+        
+          if ($category == 1){
+            $category = "Fictional";
+          }
+          elseif ($category == 2)
+          {
+            $category = "Engineering";
+
+          }
+      ?>
+<tr>
+        <td><?php echo $bid ?></td>
+        <td><?php echo $bname ?></td>
+        <td><?php echo $auth ?></td>
+        <td><?php echo $category ?></td>
+        <td><?php echo $price ?></td>
+
+
+
+      </tr>
+     <?php } ?>
+    </tbody>
+  </table>
+
+
+      
+    
+ 
+
+  
+
+
+    </div>
+    </div>
+
+
+
+
+
+
 
 
 
