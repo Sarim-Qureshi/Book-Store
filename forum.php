@@ -101,7 +101,7 @@ body {
 
     <div class="container">
 
-        <div class="row">
+        <div class="row ">
 
 <?php
 $conn = mysqli_connect("localhost", "root", "", "bookstore");
@@ -111,12 +111,13 @@ $result = mysqli_query($conn, $sql);
 while($row = mysqli_fetch_assoc($result)) {
    
     echo '
-    <div class="col-md-4">
+    <div class="col-md-4 col-sm-3">
                 <div class="card my-4" style="width: 18rem;">
                  
                     <div class="card-body">
                         <h5 class="card-title">'.$row["title"].'</h5>
-                        <p class="card-text">'.$row["description"].'</p>
+                        <p class="card-text">'.substr($row['description'],0,150).'...</p>
+                      
                         <p class="card-text">'.$row["created"].'</p>
                         <a href="#" class="btn btn-primary">Discuss this</a>
                     </div>
