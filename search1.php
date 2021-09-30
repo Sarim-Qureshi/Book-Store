@@ -6,12 +6,13 @@ if($mysqli->connect_error) {
   exit('Could not connect');
 }
 
-$sql1 = "SELECT book_name,author,category,price from entrybook WHERE book_name = ?";
+$bid = "";
+$sql1 = "SELECT bookid,book_name,author,category,price from entrybook WHERE book_name = ?";
 $stmt = $mysqli->prepare($sql1);
 $stmt->bind_param("s", $_GET['q']);
 $stmt->execute();
 $stmt->store_result();
-$stmt->bind_result($bookname, $author, $category, $price);
+$stmt->bind_result($bid,$bookname, $author, $category, $price);
 
 while($stmt->fetch()){
 
@@ -29,7 +30,9 @@ echo "<tr><td>" . $bookname . "</td>";
 echo "<td>" . $author . "</td>";
 echo "<td>" . $category . "</td>";
 echo "<td>" . $price . "</td>";
-echo "<td><button class = 'btn btn-primary' onclick = 'buyBook()'>Buy</button></td>";
+// echo "<td><button class = 'btn btn-primary' onclick = 'buyBook()'>Check</button></td>";
+echo "<td><span class='badge bg-primary'><a href='orderbook.php?bid=$bid' >Check</a></span>&nbsp
+</td>";
 echo "</tr>";
 
 }

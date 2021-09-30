@@ -1,20 +1,48 @@
 
 <!doctype html>
 <?php
-//require('connection.php');
-// if (require('always.php'))
+require ("always.php");
+$conn = mysqli_connect("localhost","root","","bookstore");
+$bid = $_GET['bid'];
+
+
+
+// $sql1 = "select name from register where email in (select uploaded_by from entrybook where bid = '$bid';)";
+// $res1 = mysqli_query($conn,$sql1);
+// $name = "";
+
+// while ($x = mysqli_fetch_assoc($res1))
 // {
- 
-//   $sql = "select name from register where email = '{$_SESSION['USERNAME']}'";
-//   $res = mysqli_query($conn,$sql);
-  
-//   $custname = " ";
-//   while ($x = mysqli_fetch_assoc($res))
-//   {
-//   $custname = " ".$x['name'];
-//   }
-  
+//     $name = $x['name'];
 // }
+
+$sql = "select * from entrybook where bookid='$bid'";
+$res = mysqli_query($conn,$sql);
+
+$bookname = "";
+$author = "";
+$price = "";
+$category = "";
+
+while ($row = mysqli_fetch_assoc($res))
+{
+    $bookname = $row['book_name'];
+    $author = $row['author'];
+    $price = $row['price'];
+    $category = $row['category'];
+        
+  if ($category == 1){
+    $category = "Fictional";
+  }
+  elseif ($category == 2)
+  {
+    $category = "Engineering";
+
+  }
+
+
+}
+
 
 
 ?>
@@ -46,10 +74,6 @@
       a:visited{
         color: #fff;
       }
-
-
-
-
 
 body {margin:150;}
 
@@ -109,118 +133,39 @@ body {margin:150;}
     <section>
       <div class="jumbotron jumbotron-fluid">
         <div class="container" id="jumbo">
-          <h1 class="display-4">Buy Books</h1>
+          <h1 class="display-4">Order Books</h1>
           <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  
         </div>
       </div>
     </section>
 
-
-  <?php
- 
-
-  ?>
-    <section>
-      <div class = "container">
-      <div class = "card mb-5" >
-        <div class = "card-body">
-
-        <div class="search-box">
-        <input type="text" autocomplete="off" placeholder="Search Book..."  id = "search"/>
-       
-  
-        <button class = "btn btn-primary" name = "search" onclick = "showTable()">Search</button>
-        <div class="result"></div>
-
-<table class="table table-hover mt-5">
-    <thead>
-      <tr>
-        <th>Book Name</th>
-        <th>Author</th>
-        <th>Category</th>
-        <th>Price</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody id = "table_data">
-</tbody>
-</table>
-        </div>
+    <section class = "container mt-5 mb-5">
+        <div class = "card card-body">
+        <div class = "row">
+        <div class = "col-sm-6">
+            <img src = "" alt = "image not available for now">
+            <!-- Include here Image of the book  -->
     </div>
+    <div class = "col-sm-6">
+    <h4>Name: <?php echo $bookname; ?> </h4>
+    <h4>Author: <?php echo $author; ?></h4>
+    <h4>Category: <?php echo $category; ?></h4>
+    <h4>Price: Rs <?php echo $price ;?>/-</h4>
+    <!-- <h4>Uploaded By: <?php echo $name; ?></h4> -->
+    <button class = "btn btn-primary">Buy Now</button>
+    <button class = "btn btn-primary">Chat With the seller</button>
+    </div>
+</div>
+</div>
 </section>
 
 
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-$(document).ready(function(){
-    $('.search-box input[type="text"]').on("keyup input", function(){
-        /* Get input value on change */
-        var inputVal = $(this).val();
-        var resultDropdown = $(this).siblings(".result");
-        if(inputVal.length){
-            $.get("search.php", {term: inputVal}).done(function(data){
-                // Display the returned data in browser
-                resultDropdown.html(data);
-            });
-        } else{
-            resultDropdown.empty();
-        }
-    });
-    
-    // Set search input value on click of result item
-    $(document).on("click", ".result p", function(){
-        $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
-        $(this).parent(".result").empty();
-    });
-});
-
-   function showTable(){
-     var str = document.getElementById("search").value;
-  
-    var xhttp;
-  if (str == "") {
-    document.getElementById("table_data").innerHTML = "";
-    return;
-  }
-  xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-    document.getElementById("table_data").innerHTML = this.responseText;
-
-    }
-  };
-  xhttp.open("GET", "search1.php?q="+str, true);
-  xhttp.send();
-
-   }
-
-  // function buyBook(){
-   
-  //   window.location.href = "orderbook.php?bid=";
-  
-  // }
 
 
 
 
 
-
-
-
-
-</script>
-
-
-
-
-
-
-
-
-   </div>
-  </div>
-</div>
-    </section>
     <footer class="bg-dark text-center text-white">
       <!-- Grid container -->
       <div class="container p-4 pb-0">
@@ -242,4 +187,6 @@ $(document).ready(function(){
     
   </body>
 </html>
+
+
 
