@@ -165,15 +165,6 @@ $cuby = "";
 
     </div>
     </div>
-
-
-
-
-
-
-
-
-
     </div>
     <footer class="bg-dark text-center text-white">
       <!-- Grid container -->

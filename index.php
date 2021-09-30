@@ -71,12 +71,66 @@ require('connection.php')
           <li>
             <a href="#"><span class="fa fa-paper-plane mr-3"></span> Your chats</a>
           </li>
+
+<?php if(isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']!='') {
+  ?>
+<li>
+            <a href="logout.php"><span class="fa fa-paper-plane mr-3"></span>Logouts</a>
+          </li>
+  <?php } ?>
+
+
+          
         </ul>
 
     	</nav>
 
         <!-- Page Content  -->
       <div id="content" class="p-4 p-md-5 pt-5">
+      <div class = "row" >
+<?php 
+$conn = mysqli_connect("localhost", "root", "", "bookstore");
+
+$sql = "select * from entrybook";
+$res = mysqli_query($conn,$sql);
+
+while($row = mysqli_fetch_assoc($res)){
+  $bid = $row['bookid'];
+  $bookname = $row['book_name'];
+  $author = $row['author'];
+  $price = $row['price'];
+  $category = $row['category'];
+  $image = $row['book_image'];
+      
+  if ($category == 1){
+    $category = "Fictional";
+  }
+  elseif ($category == 2)
+  {
+    $category = "Engineering";
+
+  }
+?>
+
+<div class = "col-sm-4">
+<div class="card mt-5" style="width: 18rem;">
+  <img src="<?php echo $image;?>" class="card-img-top" alt="Image not Available">
+  <div class="card-body">
+    <h5 class="card-title">Name:<?php echo $bookname; ?></h5>
+    <h5 class="card-title">Author:<?php echo $author; ?></h5>
+    <h5 class="card-title">Category:<?php echo $category; ?></h5>
+    <h5 class="card-title">Rs:<?php echo $price; ?>/-</h5>
+
+
+    
+   <h5><span class='badge bg-primary'><a href='orderbook.php?bid=<?php echo $bid ?>' >Check</a></span>&nbsp</h5>
+    
+  </div>
+</div>
+</div>
+<?php } ?>
+</div>
+
         <h2 class="mb-4">Book Store</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -89,6 +143,7 @@ require('connection.php')
         </p>
 
       </div>
+
 
 		</div>
    

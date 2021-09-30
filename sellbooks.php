@@ -69,10 +69,6 @@ while($check>0){
         color: #fff;
       }
 
-
-
-
-
 body {margin:150;}
 
 .navbar {
