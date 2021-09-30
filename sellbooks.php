@@ -15,8 +15,14 @@ if (require('always.php'))
   }
   
 }
-
-$bid = mt_rand();
+$check=1;
+$bid;
+while($check>0){
+  $bid = mt_rand();
+  $sql = "select bookid from entrybook where bookid = '$bid'";
+  $res = mysqli_query($conn, $sql);
+  $check = mysqli_num_rows($res);
+}
 
 // $sql = "select bookid from entrybook where bookid = '$bookid'";
 // $res = mysqli_query($conn,$sql);

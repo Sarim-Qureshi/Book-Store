@@ -60,7 +60,7 @@ require('connection.php')
               <a href="dash.php"><span class="fa fa-user mr-3"></span> Dashboard</a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-sticky-note mr-3"></span> Search Books</a>
+            <a href="buybooks.php"><span class="fa fa-sticky-note mr-3"></span> Search Books</a>
           </li>
           <li>
             <a href="sellbooks.php"><span class="fa fa-sticky-note mr-3"></span> Sell Books</a>
