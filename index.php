@@ -66,7 +66,7 @@ require('connection.php')
             <a href="sellbooks.php"><span class="fa fa-sticky-note mr-3"></span> Sell Books</a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Discussion Forum</a>
+            <a href="forum.php"><span class="fa fa-paper-plane mr-3"></span> Discussion Forum</a>
           </li>
           <li>
             <a href="#"><span class="fa fa-paper-plane mr-3"></span> Your chats</a>
