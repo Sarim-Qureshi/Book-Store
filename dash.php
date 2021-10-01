@@ -121,6 +121,7 @@ while ($x = mysqli_fetch_assoc($res))
         <th>Book Name</th>
         <th>Author</th>
         <th>Category</th>
+        <th>Rent</th>
         <th>Price</th>
         <th>Action</th>
       </tr>
@@ -141,6 +142,7 @@ $cuby = "";
           $auth = $row['author'];
           $category = $row['category'];
           $price = $row['price'];
+          $rent = $row['rent'];
         
           if ($category == 1){
             $category = "Fictional";
@@ -148,17 +150,31 @@ $cuby = "";
           elseif ($category == 2)
           {
             $category = "Engineering";
-
           }
+
+          if ($rent == 1)
+          {
+            $rent = "Yes";
+          }
+          else
+          {
+            $rent = "No";
+          }
+
+
+
       ?>
 <tr>
         <td><?php echo $bid ?></td>
         <td><?php echo $bname ?></td>
         <td><?php echo $auth ?></td>
         <td><?php echo $category ?></td>
+        <td><?php echo $rent ?></td>
         <td><?php echo $price ?></td>
-      <?php  echo "<td><span class='badge bg-primary'><a href='?type=delete&bid=$bid' >Delete</a></span>&nbsp
+      <?php  echo "<td><span class='badge bg-primary'><a href='?type=delete&bid=$bid' >Delete</a></span>&nbsp;
+      <span class='badge bg-primary'><a href='changeprice.php?&bid=$bid' >Change Price</a></span>
 </td>"; ?>
+
 
 
       </tr>
