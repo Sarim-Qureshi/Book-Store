@@ -14,6 +14,15 @@ if (require('always.php'))
   
 }
 
+$conn = mysqli_connect("localhost", "root", "", "bookstore");
+if(isset($_GET['type']) && $_GET['type']!=''){
+
+  $bid = $_GET['bid'];
+  $sql = "delete from entrybook where bookid = '$bid'";
+  $res = mysqli_query($conn, $sql);
+
+}
+
 
 
 
@@ -103,8 +112,8 @@ while ($x = mysqli_fetch_assoc($res))
 }
       ?>
 
-      <h1>Your Uploaded books Total No: <?php echo $cuby ?></h1> 
-
+      <h1>Your Uploaded books Total No: <?php echo $cuby ?>&nbsp;&nbsp;<span class='badge bg-primary'><a href='sellbooks.php' >Add New Book</a></span>   </h1> 
+      
       <table class="table table-hover">
     <thead>
       <tr>
@@ -113,6 +122,7 @@ while ($x = mysqli_fetch_assoc($res))
         <th>Author</th>
         <th>Category</th>
         <th>Price</th>
+        <th>Action</th>
       </tr>
     </thead>
     <tbody>
@@ -147,7 +157,8 @@ $cuby = "";
         <td><?php echo $auth ?></td>
         <td><?php echo $category ?></td>
         <td><?php echo $price ?></td>
-
+      <?php  echo "<td><span class='badge bg-primary'><a href='?type=delete&bid=$bid' >Delete</a></span>&nbsp
+</td>"; ?>
 
 
       </tr>
@@ -193,3 +204,7 @@ $cuby = "";
 
   </body>
 </html>
+<?php
+
+
+?>

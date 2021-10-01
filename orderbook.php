@@ -7,14 +7,25 @@ $bid = $_GET['bid'];
 
 
 
-// $sql1 = "select name from register where email in (select uploaded_by from entrybook where bid = '$bid';)";
-// $res1 = mysqli_query($conn,$sql1);
-// $name = "";
+$uploaded_by = "";
+$name = "";
+$sql1 = "select uploaded_by from entrybook where bookid = '$bid'";
+$res1 = mysqli_query($conn,$sql1);
+while($y = mysqli_fetch_assoc($res1))
+{
+  $uploaded_by = $y['uploaded_by'];
+}
 
-// while ($x = mysqli_fetch_assoc($res1))
-// {
-//     $name = $x['name'];
-// }
+
+$sql2 = "select name from register where email = '$uploaded_by'";
+$res2 = mysqli_query($conn,$sql2);
+while($z = mysqli_fetch_assoc($res2))
+{
+  $name = $z['name'];
+  // $ph = $z['phone'];
+}
+
+
 
 $sql = "select * from entrybook where bookid='$bid'";
 $res = mysqli_query($conn,$sql);
@@ -152,7 +163,7 @@ body {margin:150;}
     <h4>Author: <?php echo $author; ?></h4>
     <h4>Category: <?php echo $category; ?></h4>
     <h4>Price: Rs <?php echo $price ;?>/-</h4>
-    <!-- <h4>Uploaded By: <?php echo $name; ?></h4> -->
+    <h4>Uploaded By: <?php echo $name; ?></h4>
     <button class = "btn btn-primary">Buy Now</button>
     <button class = "btn btn-primary">Chat With the seller</button>
     </div>
