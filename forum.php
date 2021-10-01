@@ -90,7 +90,7 @@ body {
     </div>
 
     <section>
-        <div class="jumbotron jumbotron-fluid">
+        <div class="jumbotron jumbotron-fluid" style="margin-bottom:5%;">
             <div class="container" id="jumbo">
                 <h1 class="display-4">Discussion Forum</h1>
                 <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.
@@ -101,15 +101,15 @@ body {
 
     <div class="container">
 
-        <div class="row g-4">
+        <div class="row g-4" >
 
 <?php
 $conn = mysqli_connect("localhost", "root", "", "bookstore");
-$sql = "select * from forum";
+$sql = "select * from forumnew";
 $result = mysqli_query($conn, $sql);
 
 while($row = mysqli_fetch_assoc($result)) {
-   
+    $forum_id = $row["id"];
     echo '
     <div class="col-md-4 col-sm-3">
                 <div class="card my-4 h-100 " style="width: 18rem;">
@@ -119,7 +119,7 @@ while($row = mysqli_fetch_assoc($result)) {
                         <p class="card-text">'.substr($row['description'],0,150).'...</p>
                       
                         <p class="card-text">'.$row["created"].'</p>
-                        <a href="#" class="btn btn-primary">Discuss this</a>
+                        <a href="comments.php?fid='.$forum_id.'" class="btn btn-primary">Discuss this</a>
                     </div>
                 </div>
             </div>
@@ -220,7 +220,7 @@ while($row = mysqli_fetch_assoc($result)) {
   </div>
 </div>
     </section> -->
-    <footer class="bg-dark text-center text-white" style="margin-top:5%">
+    <footer class="bg-dark text-center text-white" style="margin-top:10%">
         <!-- Grid container -->
         <div class="container p-4 pb-0">
             <a href="">About Us</a>
