@@ -152,7 +152,7 @@ echo '
 <div class="accordion-item">
     <h2 class="accordion-header" id="flush-heading'.$i.'">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse'.$i.'" aria-expanded="false" aria-controls="flush-collapse'.$i.'">
-        <img src="images/usericonnew.png" alt="" width="%"> &nbsp;&nbsp; '.$name.' &nbsp;&nbsp;&nbsp;&nbsp; <font style="font-size:0.8em;" class="text-end">Posted on &nbsp;'.$datetime.'</font>
+        <img src="images/usericonnew.png" alt="" width="7%"> &nbsp;&nbsp; '.$name.' &nbsp;&nbsp;&nbsp;&nbsp; <font style="font-size:0.8em;" class="text-end">Posted on &nbsp;'.$datetime.'</font>
       </button>
     </h2>
     <div id="flush-collapse'.$i.'" class="accordion-collapse collapse" aria-labelledby="flush-heading'.$i.'" data-bs-parent="#accordionFlushExample">
