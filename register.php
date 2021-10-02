@@ -209,6 +209,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
         $email = $_POST['email'];
         $phone = $_POST['phno'];
         $pass = $_POST['pass'];
+        $pass=password_hash($pass, PASSWORD_DEFAULT);
 
         $sql = "INSERT into register (`name`, `email`, `phone`, `password`) VALUES ('$fullname','$email','$phone','$pass')";
         mysqli_query($conn,$sql);

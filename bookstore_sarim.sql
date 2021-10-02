@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 02, 2021 at 09:01 AM
+-- Generation Time: Oct 02, 2021 at 10:25 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -149,7 +149,7 @@ CREATE TABLE IF NOT EXISTS `register` (
   `name` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `phone` int NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -158,9 +158,10 @@ CREATE TABLE IF NOT EXISTS `register` (
 --
 
 INSERT INTO `register` (`name`, `email`, `phone`, `password`) VALUES
-('abc', 'abc@xyz.z', 2147483647, '123'),
-('dfd', 'shivam.prajapati_19@sakec.ac.in', 1234567890, '123456'),
-('name', 'vmor@ks.cce', 2147483647, '123');
+('aber', 'a@a.com', 2147483647, '$2y$10$hR0GY4Lfhhy32Ir0JFYi7ucKW1dPqvxkLi2Oa9Pq/QamImCWOKrfe'),
+('abc', 'abc@xyz.z', 2147483647, '$2y$10$coGXSXETNmqQfya8CkS7W.3UtdlBKlhs5JikRlfasd8Me/oYjFj3O'),
+('dfd', 'shivam.prajapati_19@sakec.ac.in', 1234567890, '$2y$10$RXItOhHJpRZibC0h82ONr.Jr3Ne7pHftXPkFdYKy7dWkEn7oQRroK'),
+('name', 'vmor@ks.cce', 2147483647, '$2y$10$coGXSXETNmqQfya8CkS7W.3UtdlBKlhs5JikRlfasd8Me/oYjFj3O');
 
 -- --------------------------------------------------------
 
@@ -172,18 +173,19 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `serialno` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`serialno`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`serialno`, `username`, `password`) VALUES
-(2, 'shivam.prajapati_19@sakec.ac.in', '123456'),
-(3, 'abc@xyz.z', '123'),
-(4, 'vmor@ks.cce', '123');
+(2, 'shivam.prajapati_19@sakec.ac.in', '$2y$10$RXItOhHJpRZibC0h82ONr.Jr3Ne7pHftXPkFdYKy7dWkEn7oQRroK'),
+(3, 'abc@xyz.z', '$2y$10$coGXSXETNmqQfya8CkS7W.3UtdlBKlhs5JikRlfasd8Me/oYjFj3O'),
+(4, 'vmor@ks.cce', '$2y$10$coGXSXETNmqQfya8CkS7W.3UtdlBKlhs5JikRlfasd8Me/oYjFj3O'),
+(8, 'a@a.com', '$2y$10$hR0GY4Lfhhy32Ir0JFYi7ucKW1dPqvxkLi2Oa9Pq/QamImCWOKrfe');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
