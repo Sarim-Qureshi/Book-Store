@@ -122,50 +122,102 @@ echo'
     <h1 class="display-4">'.$title.'</h1>
     <p class="lead">'.$description.'</p>
     <hr class="my-4">
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-    <p class="lead">
-      <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
-    </p>
-  </div>
+   
 ';
+session_start();
+if(isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']!=''){
+
+//   echo '
+//   <p class="lead">
+//     <a class="btn btn-primary btn-lg" href="#" role="button">Add comment</a>
+//   </p>
+// </div>
+//   ';
+
+   echo '
+   <p class="lead">
+  <a class="btn btn-primary btn-lg" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+    Add Comment
+  </a>
+</p>
+<div class="collapse" id="collapseExample">
+  <div class="card card-body">
+   <form method="POST" action="comments.php?fid='.$forum_id.'">
+  <div class="mb-3">
+  <label for="exampleFormControlTextarea1" class="form-label">Enter your comment</label>
+  <textarea class="form-control" id="exampleFormControlTextarea1" rows="4" style="border:1px solid black;" name="comment" required></textarea>
+  </div>
+
+  
+  <div class = "mb-3">
+    <input type = "submit" class = "btn btn-success" value = "Post"><br>
+
+</div>
+
+  </form>
+  </div>
+</div>
+</div>
+   ';
+}else{
+	echo '
+  <h5>Please <a href="login.php" style="color:#339;">login</a> to comment.</h5>
+  </div>
+  
+  ';
+}
 
     ?>
 
 
-<h1 style="text-align:center;">Browse comments</h1>
-<div class="accordion accordion-flush" id="accordionFlushExample">
 
 <?php
 
 $conn = mysqli_connect("localhost", "root", "", "bookstore");
-$sql = "select * from comment where id='$forum_id'";
+$sql = "select * from comment where id='$forum_id' order by datetime DESC";
 $result = mysqli_query($conn, $sql);
+$rows = mysqli_num_rows($result);
+if($rows>0){
+  echo '
+  <h1 style="text-align:center;">Browse comments</h1>
+  <hr>
+  ';
+    $i=1;
+    while ($row = mysqli_fetch_assoc($result))
+    {
+    $name = $row['name'];
+    $comment = $row['comment'];
+    $datetime = $row['datetime'];
 
-$i=1;
-while ($row = mysqli_fetch_assoc($result))
-{
-$name = $row['name'];
-$comment = $row['comment'];
-$datetime = $row['datetime'];
-
-echo '
-<div class="accordion-item">
-    <h2 class="accordion-header" id="flush-heading'.$i.'">
-      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse'.$i.'" aria-expanded="false" aria-controls="flush-collapse'.$i.'">
-        <img src="images/usericonnew.png" alt="" width="7%"> &nbsp;&nbsp; '.$name.' &nbsp;&nbsp;&nbsp;&nbsp; <font style="font-size:0.8em;" class="text-end">Posted on &nbsp;'.$datetime.'</font>
-      </button>
-    </h2>
-    <div id="flush-collapse'.$i.'" class="accordion-collapse collapse" aria-labelledby="flush-heading'.$i.'" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">'.$comment.'</div>
+    echo '
+    
+    <div class="accordion accordion-flush" id="accordionFlushExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="flush-heading'.$i.'">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse'.$i.'" aria-expanded="false" aria-controls="flush-collapse'.$i.'">
+          <img src="images/usericonnew.png" alt="" width="7%"> &nbsp;&nbsp; <font style="font-size:1.1em;">'.$name.'</font> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font style="font-size:0.82em;" class="text-end">Posted on &nbsp;'.$datetime.'</font>
+        </button>
+      </h2>
+      <div id="flush-collapse'.$i.'" class="accordion-collapse collapse" aria-labelledby="flush-heading'.$i.'" data-bs-parent="#accordionFlushExample">
+        <div class="accordion-body">'.$comment.'</div>
+      </div>
     </div>
-  </div>
-';
-$i++;
+    </div>
+    <hr>
+    ';
+    $i++;
+    }
+}
+else{
+  echo'
+  <h1 style="text-align:center;">No comments</h1>
+  <p style="text-align:center; font-size:1.5em">Be the first person to comment!</p>
+  ';
+  
 }
 
-
 ?>
-</div>
+
 
 <!-- 
 <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -233,3 +285,48 @@ $i++;
 </body>
 
 </html>
+
+<?php
+$conn = mysqli_connect("localhost","root","","bookstore");
+if ($_SERVER['REQUEST_METHOD']=='POST'){
+
+        $comment = $_POST["comment"];
+        $comment = str_replace("'", "\'", $comment);
+        $comment = str_replace("<", "&lt;", $comment);
+        $comment = str_replace(">", "&gt;", $comment);
+        $id = $_GET["fid"];
+        $date = date('Y-m-d H:i:s');
+        
+        $sql0 = "select name from register where email = '{$_SESSION['USERNAME']}'";
+        $res = mysqli_query($conn,$sql0);
+        
+        $name = "";
+        while ($x = mysqli_fetch_assoc($res))
+        {
+        $name = "".$x['name'];
+        }
+
+        $sql = "INSERT into comment (`id`, `name`, `comment`, `datetime`) VALUES ('$id','$name','$comment',CURRENT_TIMESTAMP)";
+        $result = mysqli_query($conn,$sql);
+        if($result){
+          echo '
+          <script>
+          alert("Your comment was added!");
+          window.location.href = "comments.php?fid='.$id.'"
+          </script>
+          ';
+         
+        }
+        else{
+          echo '
+          <script>
+          alert("An error occurred! Your comment was not added!");
+          window.location.href = "comments.php?fid='.$id.'"
+          </script>
+          ';
+        }
+
+        
+}
+
+?>
