@@ -1,6 +1,62 @@
 
 <!doctype html>
+<?php
+require ("always.php");
+$conn = mysqli_connect("localhost","root","","bookstore");
+$bid = $_GET['bid'];
 
+
+
+$uploaded_by = "";
+$name = "";
+$sql1 = "select uploaded_by from entrybook where bookid = '$bid'";
+$res1 = mysqli_query($conn,$sql1);
+while($y = mysqli_fetch_assoc($res1))
+{
+  $uploaded_by = $y['uploaded_by'];
+}
+
+
+$sql2 = "select name from register where email = '$uploaded_by'";
+$res2 = mysqli_query($conn,$sql2);
+while($z = mysqli_fetch_assoc($res2))
+{
+  $name = $z['name'];
+}
+
+
+
+$sql = "select * from order_place where bookid='$bid'";
+$res = mysqli_query($conn,$sql);
+
+$bookname = "";
+$author = "";
+$price = "";
+$category = "";
+$rent = "";
+
+while ($row = mysqli_fetch_assoc($res))
+{
+    $bookname = $row['book_name'];
+    $author = $row['author'];
+    $price = $row['price'];
+    $category = $row['category'];
+   
+        
+  if ($category == 1){
+    $category = "Fictional";
+  }
+  elseif ($category == 2)
+  {
+    $category = "Engineering";
+
+  }
+
+}
+
+
+
+?>
 <html lang="en">
   <head>
     <title>Book Store</title>
@@ -29,10 +85,6 @@
       a:visited{
         color: #fff;
       }
-
-
-
-
 
 body {margin:150;}
 
@@ -92,63 +144,39 @@ body {margin:150;}
     <section>
       <div class="jumbotron jumbotron-fluid">
         <div class="container" id="jumbo">
-          <h1 class="display-4">Login Page</h1>
+          <h1 class="display-4">Thank You</h1>
           <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  
         </div>
       </div>
     </section>
 
-    <section>
-      <div class = "container">
-      <div class = "card mb-5" >
-        <div class = "card-body">
-
-        
-      <form method = "POST" action = "checkCredentials.php">
-      <div class = "container">
+    <section class = "container mt-5 mb-5">
+        <div class = "card card-body">
         <div class = "row">
-          <div class = "col-sm-6">
-            <img src = "https://image.shutterstock.com/image-vector/library-book-shelves-cartoon-vector-260nw-1388485544.jpg" height = "100%" width = "100%">
-          </div>
-          <div class = "col-sm-6">
-
-            <!-- <form method="POST" action="checkCredentials.php"> -->
-            <div class = "form-group">
-              <div class = "col-sm-6">
-                <label class="form-check-label" for="fname">Email:</label><br>
-                <input type="text" id="username" name="username" required><br>
-              </div>
-            </div>
-            <div class = "form-group">
-              <div class = "col-sm-6">
-              <label class="form-check-label" for="lname">Password:</label><br>
-              <input  type="password" id="pass" name="password" required><br>
-            </div>
-          </div>
-          <div class = "form-group">
-            <div class = "col-sm-6">
-              <input type = "submit" class = "btn btn-primary" value = "Login"><br>
-            </div>
-          </div>
-
-          <div class = "form-group" >
-            <div class = "col-sm-8" >
-            <a href = "register.php"><button class = "btn btn-outline-success" >Create a new  account</button></a>
-          </div>
-        </div>
-
-        <!-- </form> -->
-            
-          </div>
-        </div>
-      </div>    
-         
-    
-      </form>
+        <div class = "col-sm-6">
+            <img src = "" alt = "image not available for now">
+            <!-- Include here Image of the book  -->
     </div>
-  </div>
+    <div class = "col-sm-6">
+    <h4>Name: <?php echo $bookname; ?> </h4>
+    <h4>Author: <?php echo $author; ?></h4>
+    <h4>Category: <?php echo $category; ?></h4>
+    <h4>Price: Rs <?php echo $price ;?>/-</h4>
+    <h4>Uploaded By: <?php echo $name; ?></h4>
+
+    <!-- <a href = "checkout.php?<?php echo $bid; ?>'"><button class = "btn btn-primary" >Buy Now</button></a> -->
+    </div>
 </div>
-    </section>
+</div>
+</section>
+
+
+
+
+
+
+
     <footer class="bg-dark text-center text-white">
       <!-- Grid container -->
       <div class="container p-4 pb-0">
@@ -170,3 +198,6 @@ body {margin:150;}
     
   </body>
 </html>
+
+
+

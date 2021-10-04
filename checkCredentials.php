@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
  
     $_SESSION['LOGIN']='yes';
     $_SESSION['USERNAME']=$username;
-    // header('location:dash.php'); 
+    //  header('location:dash.php'); 
     echo'
     <script type = "text/javascript"> 
    alert("Login successful");

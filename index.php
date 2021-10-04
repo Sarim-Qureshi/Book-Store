@@ -89,11 +89,17 @@ require('connection.php')
       <div id="content" class="p-4 p-md-5 pt-5">
       <div class = "row" >
 <?php 
+
 $conn = mysqli_connect("localhost", "root", "", "bookstore");
 
-$sql = "select * from entrybook";
+if(isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']!='') {
+$sql = "select * from entrybook where not uploaded_by= '{$_SESSION['USERNAME']}'";
+}
+else
+{
+  $sql = "select * from entrybook";
+}
 $res = mysqli_query($conn,$sql);
-
 while($row = mysqli_fetch_assoc($res)){
   $bid = $row['bookid'];
   $bookname = $row['book_name'];
@@ -111,7 +117,6 @@ while($row = mysqli_fetch_assoc($res)){
 
   }
 ?>
-
 <div class = "col-sm-4">
 <div class="card mt-5" style="width: 18rem;">
   <img src="<?php echo $image;?>" class="card-img-top" alt="Image not Available">
@@ -120,11 +125,7 @@ while($row = mysqli_fetch_assoc($res)){
     <h5 class="card-title">Author:<?php echo $author; ?></h5>
     <h5 class="card-title">Category:<?php echo $category; ?></h5>
     <h5 class="card-title">Rs:<?php echo $price; ?>/-</h5>
-
-
-    
    <h5><span class='badge bg-primary'><a href='orderbook.php?bid=<?php echo $bid ?>' >Check</a></span>&nbsp</h5>
-    
   </div>
 </div>
 </div>

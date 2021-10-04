@@ -165,7 +165,10 @@ body {margin:150;}
     <h4>Category: <?php echo $category; ?></h4>
     <h4>Price: Rs <?php echo $price ;?>/-</h4>
     <h4>Uploaded By: <?php echo $name; ?></h4>
-    <button class = "btn btn-primary">Buy Now</button>
+
+    <!-- <a href = "checkout.php?<?php echo $bid; ?>'"><button class = "btn btn-primary" >Buy Now</button></a> -->
+ <h4><span class='badge bg-primary'><a href='checkout.php?bid=<?php echo $bid ?>' >Buy Now</a></span>&nbsp</h4>
+
   <?php if ($rent == 1){ ?>
     <button class = "btn btn-primary">Rent the Book</button>
     <?php } ?>
