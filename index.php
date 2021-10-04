@@ -78,7 +78,7 @@ p{
 <?php if(isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']!='') {
   ?>
 <li>
-            <a href="logout.php"><span class="fa fa-paper-plane mr-3"></span>Logouts</a>
+            <a href="logout.php"><span class="fa fa-paper-plane mr-3"></span> Logout</a>
           </li>
   <?php } ?>
 
@@ -128,10 +128,10 @@ while($row = mysqli_fetch_assoc($res)){
 
   }
 ?>
-<div class = "col-sm-4 ">
+<div class = "col-sm-4 " >
 <div class="card mt-5  ml-auto mr-auto" style="width: 18rem;">
   <img src="<?php echo $image;?>" class="card-img-top" alt="Image not Available">
-  <div class="card-body">
+  <div class="card-body" >
     <h5 class="card-title">Name:<?php echo $bookname; ?></h5>
     <h5 class="card-title">Author:<?php echo $author; ?></h5>
     <h5 class="card-title">Category:<?php echo $category; ?></h5>
@@ -157,7 +157,7 @@ while($row = mysqli_fetch_assoc($res)){
                 </div>
                 <div class="col-sm-4">
                     <div class="text-sm-left text-center">
-                        <button onclick="window.location.href='rent';" type="button" class="btn btn-info ml-sm-4">
+                        <button onclick="window.location.href='rent';" type="button" class="btn btn-info btn-lg ml-sm-4">
                             Learn More
                         </button>
                     </div>
@@ -175,14 +175,14 @@ while($row = mysqli_fetch_assoc($res)){
     <section style="background-color:#D89724">
         <div class="container py-3 mt-5 mb-5" >
             <div class="row py-5 card-body" >
-                <div class="col-sm-8 mb-2">
+                <div class="col-sm-8 mb-2" >
                     <h2 class="text-white text-sm-right text-center">
                        Start Your Discuss Now on Any Book
                     </h2>
                 </div>
                 <div class="col-sm-4">
                     <div class="text-sm-left text-center">
-                        <button onclick="window.location.href='forum.php';" type="button" class="btn btn-info ml-sm-4">
+                        <button onclick="window.location.href='forum.php';" type="button" class="btn btn-info btn-lg ml-sm-4">
                             Learn More
                         </button>
                     </div>
