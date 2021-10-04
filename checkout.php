@@ -121,7 +121,7 @@ body {margin:150;}
     <div class = "form-group">
     <div class="mb-3">
   <label for="exampleFormControlTextarea1" class="form-label">Address to Delivery</label>
-  <textarea class="form-control" name = "address" rows="3" style = "border:1px solid black"></textarea>
+  <textarea class="form-control" name = "address" rows="3" style = "border:1px solid black" required></textarea>
 </div>
 </div>
 
@@ -233,8 +233,8 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
         $sql = "INSERT INTO `order_place`(`ordered_by`, `bookid`,`address`, `book_name`, `book_image`, `author`, `category`, `price`) VALUES ('{$_SESSION['USERNAME']}','$bid','$address','$bookname','$bookimage','$author','$category','$price')";
         mysqli_query($conn,$sql);
 
-        $sql1 = "delete from entrybook where bookid = '$bid'";
-        mysqli_query($conn,$sql1);
+        // $sql1 = "delete from entrybook where bookid = '$bid'";
+        // mysqli_query($conn,$sql1);
 
         header('location:confirmed.php?bid='.$bid);
 
