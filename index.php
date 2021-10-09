@@ -72,7 +72,7 @@ p{
             <a href="forum.php"><span class="fa fa-paper-plane mr-3"></span> Discussion Forum</a>
           </li>
           <li>
-            <a href="#"><span class="fa fa-paper-plane mr-3"></span> Your chats</a>
+            <a href="chat.php"><span class="fa fa-paper-plane mr-3"></span> Your chats</a>
           </li>
 
 <?php if(isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']!='') {
