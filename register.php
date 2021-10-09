@@ -98,17 +98,25 @@ body {margin:150;}
 
 
     <section>
-      <div class="jumbotron jumbotron-fluid">
-        <div class="container" id="jumbo">
+      <div class="container" id="jumbo">
+      <div class="jumbotron "  style="background-color:beige">
           <h1 class="display-4 ">Register Page</h1>
-          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+          <hr>
+          <p class="lead">Register yourself to get some amazing features like:</p>
+          <hr>
+          <ul>
+            <li>Upload books to sell, rent or donate</li>
+            <li>Start a discussion and comment on any discussion in the discussion forum</li>
+            <li>Chat with the seller of a book or any other person registered to book store</li>
+          </ul>
+          <hr>
         </div>
       </div>
     </section>
 
     <section>
-      <div class = "container">
-      <div class = "card mb-5">
+      <div class = "container" >
+      <div class = "card mb-5" style="border:3px groove black;  box-shadow: -5px -5px #888888;  border-radius: 40px; font-weight:bold; font-size:1.1em;">
         <div class = "card-body">
     <form method = "POST" action = "" name = "register" onsubmit = "return validate()">
       <div class = "container">
@@ -151,7 +159,8 @@ body {margin:150;}
               <input class = "btn btn-success" name="submit" type="submit" value="Register"><br>
           </div>
         </div>
-
+</form>
+<form method="GET" action="login.php">
         <div class = "form-group" >
             <div class = "col-sm-8" >
               <button class = "btn btn-outline-primary" ><a href = "login.php">Already have an new account?</a></button>
@@ -169,7 +178,7 @@ body {margin:150;}
 
          
 
-        <!-- </form> -->
+  
             
           </div>
         </div>
@@ -212,18 +221,29 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
         $pass=password_hash($pass, PASSWORD_DEFAULT);
 
         $sql = "INSERT into register (`name`, `email`, `phone`, `password`) VALUES ('$fullname','$email','$phone','$pass')";
-        mysqli_query($conn,$sql);
+        $res1 = mysqli_query($conn,$sql);
 
         $sql1 = "INSERT into users (`username`, `password`) VALUES ('$email','$pass')";
-        mysqli_query($conn,$sql1);
+        $res2 = mysqli_query($conn,$sql1);
 
 
-?>
+if($res1 and $res2){
+  echo '
 <script>
 alert("Registration Successfull ! Please Now login to your account");
 window.location.href = "login.php";
     </script>
-<?php
+    ';
+}
+else{
+  echo '
+<script>
+alert("Account already exists ! Enter unique email id");
+window.location.href = "register.php";
+    </script>
+    ';
+}
+
 }
 
 

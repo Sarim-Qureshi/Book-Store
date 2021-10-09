@@ -90,17 +90,25 @@ body {margin:150;}
 </div>
   
     <section>
-      <div class="jumbotron jumbotron-fluid">
-        <div class="container" id="jumbo">
+      <div class="container" id="jumbo">
+      <div class="jumbotron " style="background-color:beige">
           <h1 class="display-4">Login Page</h1>
-          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+          <hr>
+          <p class="lead">Login to get the advantages of the following exciting features:</p>
+          <hr>
+          <ul>
+            <li>Upload books to sell, rent or donate</li>
+            <li>Start a discussion and comment on any discussion in the discussion forum</li>
+            <li>Chat with the seller of a book or any other person registered to book store</li>
+          </ul>
+          <hr>
         </div>
       </div>
     </section>
 
     <section>
       <div class = "container">
-      <div class = "card mb-5" >
+      <div class = "card mb-5" style="border:3px groove black;  box-shadow: -5px -5px #888888;  border-radius: 40px; font-weight:bold; font-size:1.1em;">
         <div class = "card-body">
 
         
@@ -130,14 +138,13 @@ body {margin:150;}
               <input type = "submit" class = "btn btn-primary" value = "Login"><br>
             </div>
           </div>
-
+         </form>
+          <form method = "GET" action = "register.php">
           <div class = "form-group" >
             <div class = "col-sm-8" >
             <a href = "register.php"><button class = "btn btn-outline-success" >Create a new  account</button></a>
           </div>
         </div>
-
-        <!-- </form> -->
             
           </div>
         </div>

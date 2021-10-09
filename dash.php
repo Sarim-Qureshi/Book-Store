@@ -170,8 +170,8 @@ $cuby = "";
         <td><?php echo $category ?></td>
         <td><?php echo $rent ?></td>
         <td><?php echo $price ?></td>
-      <?php  echo "<td><span class='badge bg-primary'><a href='?type=delete&bid=$bid' >Delete</a></span>&nbsp;
-      <span class='badge bg-primary'><a href='changeprice.php?&bid=$bid' >Change Price</a></span>
+      <?php  echo "<td><span class='badge bg-danger'><a href='?type=delete&bid=$bid' >Delete</a></span>&nbsp;
+      <span class='badge bg-warning'><a href='changeprice.php?&bid=$bid' >Change Price</a></span>
 </td>"; ?>
 
 

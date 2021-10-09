@@ -30,7 +30,7 @@ p{
 
     </style>
   </head>
-  <body style = "background-color:#F36175; color:white;">
+  <body style = "background-color:#1f456e; color:white;">
 		<div class="wrapper d-flex align-items-stretch">
 			<nav id="sidebar">
 				<div class="custom-menu">
@@ -94,7 +94,7 @@ p{
         
       <div id="content" class="p-4 p-md-5 pt-5">
 
-      <h2 class="mb-4">Book Store</h2>
+      <h2 class="mb-4" style="text-align:center">Book Store</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
         
@@ -128,10 +128,10 @@ while($row = mysqli_fetch_assoc($res)){
 
   }
 ?>
-<div class = "col-sm-4 " >
+<div class = "col-sm-4 ">
 <div class="card mt-5  ml-auto mr-auto" style="width: 18rem;">
-  <img src="<?php echo $image;?>" class="card-img-top" alt="Image not Available">
-  <div class="card-body" >
+  <img src="<?php echo $image;?>" class="card-img-top" alt="Image not Available"  style="background-color:#ed2939;">
+  <div class="card-body"  style="background-color:#ed2939;">
     <h5 class="card-title">Name:<?php echo $bookname; ?></h5>
     <h5 class="card-title">Author:<?php echo $author; ?></h5>
     <h5 class="card-title">Category:<?php echo $category; ?></h5>
@@ -147,7 +147,7 @@ while($row = mysqli_fetch_assoc($res)){
           In Dashboard, user can see his favorite books, get notification, login/logout/create account/delete account. User can view books but to chat with the seller he has to login. To sell books, he again is required to login. He can view the discussion forum but to comment, he has to login. We can include about us, contact us, copyright info in footer.
         </p>
 
-    <section style="background-color: #57DE4E ;">
+    <section style="background-color: #32612d; ">
         <div class="container py-3 mt-5 mb-5">
             <div class="row py-5">
                 <div class="col-sm-8 mb-2">
@@ -177,7 +177,7 @@ while($row = mysqli_fetch_assoc($res)){
             <div class="row py-5 card-body" >
                 <div class="col-sm-8 mb-2" >
                     <h2 class="text-white text-sm-right text-center">
-                       Start Your Discuss Now on Any Book
+                       Start Discussion Now on Any Book
                     </h2>
                 </div>
                 <div class="col-sm-4">

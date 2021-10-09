@@ -133,19 +133,7 @@
         </div>
 
 
-        <h1 style="text-align:center">Your Chats</h1>
-
-        <table class="table table-hover">
-            <thead class=" table-dark">
-                <tr>
-
-                    <th scope="col">Contacts</th>
-                    <th scope="col">Last Message</th>
-                    <th scope="col">Timestamp of last message</th>
-                    <th scope="col">Options</th>
-                </tr>
-            </thead>
-            <tbody>
+     
 
                 <?php
                 // if(isset($_SESSION['LOGIN']) && $_SESSION['LOGIN']!='') {
@@ -157,6 +145,24 @@
 
                     $rows = mysqli_num_rows($result);
                     if ($rows > 0) {
+
+                        echo '
+                        <h1 style="text-align:center">Your Chats</h1>
+
+                        <table class="table table-hover">
+                            <thead class=" table-dark">
+                                <tr>
+                
+                                    <th scope="col">Contacts</th>
+                                    <th scope="col">Last Message</th>
+                                    <th scope="col">Timestamp of last message</th>
+                                    <th scope="col">Options</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                        ';
+
+
                         while ($row = mysqli_fetch_assoc($result)) {
 
                             $contact_id = $row['contact'];
@@ -179,10 +185,20 @@
 </tr>
   ';
                         }
+                        echo '
+                        </tbody>
+                        </table>
+                        ';
+                    }
+                
+                    else{
+                        echo '
+                        <h1 style="text-align:center">No conversations Yet.</h1>
+                        ';
                     }
                 }
                 ?>
-            </tbody>
+           
             <!-- <tbody>
     <tr>
  
@@ -219,7 +235,7 @@
       <span class='badge bg-info'><a href=#' >Chat</a></span></h6>
     </tr>
   </tbody> -->
-        </table>
+       
 
 
     </div>
