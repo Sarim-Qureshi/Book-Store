@@ -297,12 +297,16 @@
   <td>' . $contact_name . '</td><br>
   <td>' . $last_message . '</td>
   <td>' . $datetime . '</td>
-  <td><h6><span class="badge bg-danger"><a href="#" >Delete</a></span>&nbsp;
+  <td><h6><span class="badge bg-danger"><a href="javascript:void(0);" onclick="deleteChat(`'.$row['username'].'`,`'.$contact_id.'`)" >Delete</a></span>&nbsp;
   <span class="badge bg-info"><a href="conversation.php?user='.$_SESSION['USERNAME'].'&contact_id='.$contact_id.'&contact_name='.$contact_name.'" >Chat</a></span></h6>
 </tr>
-  ';}
+  ';
+
+}
                         else{
                             $contact_id = $row['username'];
+
+                            $from = $row['username'];
                      
 
                             $last_message = $row['last_message'];
@@ -319,10 +323,12 @@
   <td>' . $contact_name . '</td><br>
   <td>' . $last_message . '</td>
   <td>' . $datetime . '</td>
-  <td><h6><span class="badge bg-danger"><a href="#" >Delete</a></span>&nbsp;
+  <td><h6><span class="badge bg-danger"><a href="javascript:void(0);" onclick="deleteChat(`'.$from.'`,`'.$contact_id.'`)" >Delete</a>&nbsp;
   <span class="badge bg-info"><a href="conversation.php?user='.$_SESSION['USERNAME'].'&contact_id='.$contact_id.'&contact_name='.$contact_name.'" >Chat</a></span></h6>
 </tr>
-  ';}
+  ';
+
+}
                         }
  
                         }
@@ -423,6 +429,23 @@
         <!-- Copyright -->
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous">
+    </script>
+    <script>
+        function deleteChat(from, to){
+
+         if(confirm("Your contact and chats with it will be deleted. Click on OK to confirm")){
+            
+            var json_from = JSON.stringify(from);
+
+            var json_to = JSON.stringify(to);
+
+
+            document.cookie = "from" + "=" + json_from + "; path=/;";
+            document.cookie = "to" + "=" + json_to + "; path=/;";
+            location.href="deletechat.php";
+            }
+        
+        }
     </script>
 </body>
 
