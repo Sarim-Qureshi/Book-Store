@@ -85,6 +85,12 @@ require('connection.php')
         <li>
           <a href="chat.php"><span class="fa fa-paper-plane mr-3"></span> Your chats</a>
         </li>
+        <li>
+          <a href="contactUs.php"><span class="fa fa-paper-plane mr-3"></span>Contact Us</a>
+        </li>
+        <li>
+          <a href="aboutUs.php"><span class="fa fa-paper-plane mr-3"></span>About Us</a>
+        </li>
 
         <?php if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] != '') {
         ?>
@@ -190,9 +196,9 @@ require('connection.php')
         adipisci autem repellendus ex libero?</p>
       <br>
 
-
-      <h4 class="mb-4" style="text-align:center">Check out some of the books for sale</h4>
-      <div class="row">
+<div class = "card">
+      <h4 class="mb-4 card-title" style="text-align:center">Check out some of the books for sale</h4>
+      <div class=" card-body row">
         <?php
 
         $conn = mysqli_connect("localhost", "root", "", "bookstore");
@@ -218,8 +224,8 @@ require('connection.php')
           }
         ?>
 
-          <div class="col-sm-4 ">
-            <div class="card mt-5  ml-auto mr-auto" style="width: 16rem; height:16rem;">
+          <div class="col-sm-4 col-md-3 col-auto">
+            <div class="card mt-2 mb-3  ml-auto mr-auto" style="width: 16rem; height:16rem;">
               <!-- <img src="<?php echo $image; ?>" class="card-img-top" alt="Image not Available"  style="background-color:#ed2939;">
   <div class="card-body"  style="background-color:#ed2939;"> -->
               <img src="<?php echo $image; ?>" class="card-img-top" alt="Image not Available" style="background-color:#222; color:white">
@@ -234,6 +240,7 @@ require('connection.php')
           </div>
         <?php } ?>
       </div>
+        </div>
 
       <p class="mt-5">
         In Dashboard, user can see his favorite books, get notification, login/logout/create account/delete
