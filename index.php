@@ -85,12 +85,7 @@ require('connection.php')
         <li>
           <a href="chat.php"><span class="fa fa-paper-plane mr-3"></span> Your chats</a>
         </li>
-        <li>
-          <a href="contactUs.php"><span class="fa fa-paper-plane mr-3"></span>Contact Us</a>
-        </li>
-        <li>
-          <a href="aboutUs.php"><span class="fa fa-paper-plane mr-3"></span>About Us</a>
-        </li>
+      
 
         <?php if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] != '') {
         ?>
@@ -396,9 +391,9 @@ require('connection.php')
   <footer class="bg-dark text-center text-white">
     <!-- Grid container -->
     <div class="container p-4 pb-0">
-      <a href="">About Us</a>
+      <a href="aboutUs.php">About Us</a>
       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="">Contact Us</a>
+      <a href="contactUs.php">Contact Us</a>
 
 
 
