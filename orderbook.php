@@ -175,7 +175,7 @@ body {margin:150;}
 
 
 
-    <button class = "btn btn-primary">Chat With the seller</button>
+    <button class = "btn btn-primary" onclick="chatSeller()">Chat With the seller</button>
     </div>
 </div>
 </div>
@@ -205,7 +205,18 @@ body {margin:150;}
       </div>
       <!-- Copyright -->
     </footer>
-    
+    <script>
+
+function chatSeller(){
+ <?php 
+  echo '
+  alert("Please add this email as contact to chat with the seller\n'.$uploaded_by.'");
+  window.location.href="chat.php";
+  ';
+    ?>
+}
+
+    </script>
   </body>
 </html>
 

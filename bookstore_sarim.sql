@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Oct 02, 2021 at 10:25 AM
+-- Generation Time: Oct 12, 2021 at 09:35 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `bookstore`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `chat`
+--
+
+DROP TABLE IF EXISTS `chat`;
+CREATE TABLE IF NOT EXISTS `chat` (
+  `username` varchar(100) NOT NULL,
+  `contact` varchar(100) NOT NULL,
+  `last_message` varchar(255) NOT NULL,
+  `timestamp` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `chat`
+--
+
+INSERT INTO `chat` (`username`, `contact`, `last_message`, `timestamp`) VALUES
+('vmor@ks.cce', 'sarim.asq@gmail.com', 'Hey', '2021-10-12 14:28:38'),
+('abc@xyz.z', 'a@a.com', 'Dammit', '2021-10-17 14:16:36'),
+('abc@xyz.z', 'vmor@ks.cce', 'Good to hear', '2021-10-12 14:02:55'),
+('vmor@ks.cce', 'kk@kk.k', 'Good morning', '2021-10-12 14:31:10');
 
 -- --------------------------------------------------------
 
@@ -51,6 +75,35 @@ INSERT INTO `comment` (`id`, `name`, `comment`, `datetime`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `conversation`
+--
+
+DROP TABLE IF EXISTS `conversation`;
+CREATE TABLE IF NOT EXISTS `conversation` (
+  `from` varchar(100) NOT NULL,
+  `to` varchar(100) NOT NULL,
+  `datetime` datetime NOT NULL,
+  `message` varchar(255) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `conversation`
+--
+
+INSERT INTO `conversation` (`from`, `to`, `datetime`, `message`) VALUES
+('abc@xyz.z', 'vmor@ks.cce', '2021-10-12 12:44:23', 'How you doing'),
+('abc@xyz.z', 'vmor@ks.cce', '2021-10-12 12:33:16', 'Hey'),
+('vmor@ks.cce', 'abc@xyz.z', '2021-10-12 14:01:30', 'I am fine'),
+('abc@xyz.z', 'vmor@ks.cce', '2021-10-12 14:02:17', 'I was interested in your book which you uploaded'),
+('vmor@ks.cce', 'abc@xyz.z', '2021-10-12 14:02:55', 'Good to hear'),
+('vmor@ks.cce', 'sarim.asq@gmail.com', '2021-10-12 14:04:16', 'Hello'),
+('sarim.asq@gmail.com', 'vmor@ks.cce', '2021-10-12 14:28:38', 'Hey'),
+('kk@kk.k', 'vmor@ks.cce', '2021-10-12 14:30:31', 'Hello'),
+('vmor@ks.cce', 'kk@kk.k', '2021-10-12 14:31:10', 'Good morning');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `entrybook`
 --
 
@@ -61,6 +114,7 @@ CREATE TABLE IF NOT EXISTS `entrybook` (
   `book_name` varchar(200) NOT NULL,
   `book_image` varchar(250) NOT NULL,
   `author` varchar(100) NOT NULL,
+  `rent` tinyint NOT NULL,
   `category` varchar(50) NOT NULL,
   `price` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -69,16 +123,17 @@ CREATE TABLE IF NOT EXISTS `entrybook` (
 -- Dumping data for table `entrybook`
 --
 
-INSERT INTO `entrybook` (`uploaded_by`, `bookid`, `book_name`, `book_image`, `author`, `category`, `price`) VALUES
-('shivam.prajapati_19@sakec.ac.in', 807716029, 'hero', '', 'dfds', '1', 50),
-('shivam.prajapati_19@sakec.ac.in', 875677398, 'harry', 'peakpx.jpg', 'dfds', '1', 50),
-('', 1590910806, 'freedom', 'peakpx.jpg', 'dfds', '2', 50),
-('shivam.prajapati_19@sakec.ac.in', 1629481422, 'hero', 'peakpx.jpg', 'dfds', '1', 50),
-('', 1875990789, 'hereo', 'peakpx.jpg', 'dfds', '0', 50),
-('', 2121963916, 'helo', 'peakpx.jpg', 'dfds', '1', 50),
-('', 2130119357, 'fdfs', 'peakpx(3).jpg', 'jdlf', '1', 50),
-('abc@xyz.z', 2012162085, 'ABC', 'dummy2.jpg', 'Kane', '1', 1200),
-('vmor@ks.cce', 1527355982, 'ABC', 'IMG_20200711_220459.jpg', 'Kane', '2', 10000);
+INSERT INTO `entrybook` (`uploaded_by`, `bookid`, `book_name`, `book_image`, `author`, `rent`, `category`, `price`) VALUES
+('shivam.prajapati_19@sakec.ac.in', 807716029, 'hero', '', 'dfds', 0, '1', 50),
+('shivam.prajapati_19@sakec.ac.in', 875677398, 'harry', 'peakpx.jpg', 'dfds', 0, '1', 50),
+('', 1590910806, 'freedom', 'peakpx.jpg', 'dfds', 0, '2', 50),
+('shivam.prajapati_19@sakec.ac.in', 1629481422, 'hero', 'peakpx.jpg', 'dfds', 0, '1', 50),
+('', 1875990789, 'hereo', 'peakpx.jpg', 'dfds', 0, '0', 50),
+('', 2121963916, 'helo', 'peakpx.jpg', 'dfds', 0, '1', 50),
+('', 2130119357, 'fdfs', 'peakpx(3).jpg', 'jdlf', 0, '1', 50),
+('vmor@ks.cce', 1527355982, 'ABC', 'IMG_20200711_220459.jpg', 'Kane', 0, '2', 10000),
+('abc@xyz.z', 1283975186, 'John', 'crossword.png', 'Kane', 0, '1', 1000),
+('sarim.asq@gmail.com', 1836767605, 'Korth DBMS', 'IMG_20210211_115631.jpg', 'Korth', 0, '2', 500);
 
 -- --------------------------------------------------------
 
@@ -160,6 +215,8 @@ CREATE TABLE IF NOT EXISTS `register` (
 INSERT INTO `register` (`name`, `email`, `phone`, `password`) VALUES
 ('aber', 'a@a.com', 2147483647, '$2y$10$hR0GY4Lfhhy32Ir0JFYi7ucKW1dPqvxkLi2Oa9Pq/QamImCWOKrfe'),
 ('abc', 'abc@xyz.z', 2147483647, '$2y$10$coGXSXETNmqQfya8CkS7W.3UtdlBKlhs5JikRlfasd8Me/oYjFj3O'),
+('Zeus', 'kk@kk.k', 2147483647, '$2y$10$QBAgSz.lMhP27hHmbfFa8.lXDtwkvwyFTJeeLZ4JrerMM0PvYxu12'),
+('Sarim Qureshi', 'sarim.asq@gmail.com', 2147483647, '$2y$10$uqVegEBs7sckurXwbabhoO5KBmtkpHJjA/b/SBS7gyHkR70OdG6rq'),
 ('dfd', 'shivam.prajapati_19@sakec.ac.in', 1234567890, '$2y$10$RXItOhHJpRZibC0h82ONr.Jr3Ne7pHftXPkFdYKy7dWkEn7oQRroK'),
 ('name', 'vmor@ks.cce', 2147483647, '$2y$10$coGXSXETNmqQfya8CkS7W.3UtdlBKlhs5JikRlfasd8Me/oYjFj3O');
 
@@ -175,7 +232,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   `username` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   PRIMARY KEY (`serialno`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `users`
@@ -185,7 +242,11 @@ INSERT INTO `users` (`serialno`, `username`, `password`) VALUES
 (2, 'shivam.prajapati_19@sakec.ac.in', '$2y$10$RXItOhHJpRZibC0h82ONr.Jr3Ne7pHftXPkFdYKy7dWkEn7oQRroK'),
 (3, 'abc@xyz.z', '$2y$10$coGXSXETNmqQfya8CkS7W.3UtdlBKlhs5JikRlfasd8Me/oYjFj3O'),
 (4, 'vmor@ks.cce', '$2y$10$coGXSXETNmqQfya8CkS7W.3UtdlBKlhs5JikRlfasd8Me/oYjFj3O'),
-(8, 'a@a.com', '$2y$10$hR0GY4Lfhhy32Ir0JFYi7ucKW1dPqvxkLi2Oa9Pq/QamImCWOKrfe');
+(8, 'a@a.com', '$2y$10$hR0GY4Lfhhy32Ir0JFYi7ucKW1dPqvxkLi2Oa9Pq/QamImCWOKrfe'),
+(9, 'sarim.asq@gmail.com', '$2y$10$uqVegEBs7sckurXwbabhoO5KBmtkpHJjA/b/SBS7gyHkR70OdG6rq'),
+(10, 'sarim.asq@gmail.com', '$2y$10$oB4md1MkriqWrA.DRjaIAOL36.I/CgdxH7t2dnrRJjbXALsQ/9UcG'),
+(11, 'sarim.asq@gmail.com', '$2y$10$qKrS7WH2RFPccIwl1Dr7uuug2Bvzj12/Tc.YWA/fdIgtzdTy/AzLq'),
+(12, 'kk@kk.k', '$2y$10$QBAgSz.lMhP27hHmbfFa8.lXDtwkvwyFTJeeLZ4JrerMM0PvYxu12');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

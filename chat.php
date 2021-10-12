@@ -140,11 +140,123 @@
                 if (require "always.php") {
                     $conn = mysqli_connect("localhost", "root", "", "bookstore");
 
-                    $sql = "select * from chat where username = '{$_SESSION['USERNAME']}' order by timestamp DESC";
-                    $result = mysqli_query($conn, $sql);
+                    // $sql1 = "select * from chat where username = '{$_SESSION['USERNAME']}' order by timestamp DESC";
+                    // $result1 = mysqli_query($conn, $sql1);
 
-                    $rows = mysqli_num_rows($result);
-                    if ($rows > 0) {
+                    // $rows1 = mysqli_num_rows($result1);
+
+                    // $sql2 = "select * from chat where contact = '{$_SESSION['USERNAME']}' order by timestamp DESC";
+                    // $result2 = mysqli_query($conn, $sql2);
+
+                    // $rows2 = mysqli_num_rows($result2);
+
+                    $sql3 = "select * from chat where `contact` = '{$_SESSION['USERNAME']}' or `username`='{$_SESSION['USERNAME']}' order by timestamp DESC";
+                    $result3 = mysqli_query($conn, $sql3);
+
+                    $rows3 = mysqli_num_rows($result3);
+//                     if ($rows1 > 0) {
+
+//                         echo '
+//                         <h1 style="text-align:center">Your Chats</h1>
+
+//                         <table class="table table-hover">
+//                             <thead class=" table-dark">
+//                                 <tr>
+                
+//                                     <th scope="col">Contacts</th>
+//                                     <th scope="col">Last Message</th>
+//                                     <th scope="col">Timestamp of last message</th>
+//                                     <th scope="col">Options</th>
+//                                 </tr>
+//                             </thead>
+//                             <tbody>
+//                         ';
+
+
+//                         while ($row = mysqli_fetch_assoc($result1)) {
+
+//                             $contact_id = $row['contact'];
+//                             $last_message = $row['last_message'];
+//                             $datetime = $row['timestamp'];
+
+//                             $sql0 = "select name from register where email = '$contact_id'";
+//                             $res0 = mysqli_query($conn, $sql0);
+
+//                             $contact_name = "";
+//                             while ($x = mysqli_fetch_assoc($res0)) {
+//                                 $contact_name = "" . $x['name'];
+//                             }
+//                             echo '
+//   <td>' . $contact_name . '</td><br>
+//   <td>' . $last_message . '</td>
+//   <td>' . $datetime . '</td>
+//   <td><h6><span class="badge bg-danger"><a href="#" >Delete</a></span>&nbsp;
+//   <span class="badge bg-info"><a href="conversation.php?user='.$_SESSION['USERNAME'].'&contact_id='.$contact_id.'&contact_name='.$contact_name.'" >Chat</a></span></h6>
+// </tr>
+//   ';
+//                         }
+//                         echo '
+//                         </tbody>
+//                         </table>
+//                         ';
+
+//                     }
+                    
+                    
+                    
+//                     else if($rows2>0){
+
+
+
+//                         echo '
+//                         <h1 style="text-align:center">Your Chats</h1>
+
+//                         <table class="table table-hover">
+//                             <thead class=" table-dark">
+//                                 <tr>
+                
+//                                     <th scope="col">Contacts</th>
+//                                     <th scope="col">Last Message</th>
+//                                     <th scope="col">Timestamp of last message</th>
+//                                     <th scope="col">Options</th>
+//                                 </tr>
+//                             </thead>
+//                             <tbody>
+//                         ';
+
+
+//                         while ($row = mysqli_fetch_assoc($result2)) {
+
+//                             $contact_id = $row['username'];
+//                             $last_message = $row['last_message'];
+//                             $datetime = $row['timestamp'];
+
+//                             $sql0 = "select name from register where email = '$contact_id'";
+//                             $res0 = mysqli_query($conn, $sql0);
+
+//                             $contact_name = "";
+//                             while ($x = mysqli_fetch_assoc($res0)) {
+//                                 $contact_name = "" . $x['name'];
+//                             }
+//                             echo '
+//   <td>' . $contact_name . '</td><br>
+//   <td>' . $last_message . '</td>
+//   <td>' . $datetime . '</td>
+//   <td><h6><span class="badge bg-danger"><a href="#" >Delete</a></span>&nbsp;
+//   <span class="badge bg-info"><a href="conversation.php?user='.$_SESSION['USERNAME'].'&contact_id='.$contact_id.'&contact_name='.$contact_name.'" >Chat</a></span></h6>
+// </tr>
+//   ';
+//                         }
+//                         echo '
+//                         </tbody>
+//                         </table>
+//                         ';
+
+
+
+//                     }
+                    if($rows3>0){
+
 
                         echo '
                         <h1 style="text-align:center">Your Chats</h1>
@@ -163,9 +275,14 @@
                         ';
 
 
-                        while ($row = mysqli_fetch_assoc($result)) {
+                        while ($row = mysqli_fetch_assoc($result3)) {
+
+
+                            if(strcmp($row['username'], $_SESSION['USERNAME'])==0){
 
                             $contact_id = $row['contact'];
+                     
+
                             $last_message = $row['last_message'];
                             $datetime = $row['timestamp'];
 
@@ -181,22 +298,55 @@
   <td>' . $last_message . '</td>
   <td>' . $datetime . '</td>
   <td><h6><span class="badge bg-danger"><a href="#" >Delete</a></span>&nbsp;
-  <span class="badge bg-info"><a href="#" >Chat</a></span></h6>
+  <span class="badge bg-info"><a href="conversation.php?user='.$_SESSION['USERNAME'].'&contact_id='.$contact_id.'&contact_name='.$contact_name.'" >Chat</a></span></h6>
 </tr>
-  ';
+  ';}
+                        else{
+                            $contact_id = $row['username'];
+                     
+
+                            $last_message = $row['last_message'];
+                            $datetime = $row['timestamp'];
+
+                            $sql0 = "select name from register where email = '$contact_id'";
+                            $res0 = mysqli_query($conn, $sql0);
+
+                            $contact_name = "";
+                            while ($x = mysqli_fetch_assoc($res0)) {
+                                $contact_name = "" . $x['name'];
+                            }
+                            echo '
+  <td>' . $contact_name . '</td><br>
+  <td>' . $last_message . '</td>
+  <td>' . $datetime . '</td>
+  <td><h6><span class="badge bg-danger"><a href="#" >Delete</a></span>&nbsp;
+  <span class="badge bg-info"><a href="conversation.php?user='.$_SESSION['USERNAME'].'&contact_id='.$contact_id.'&contact_name='.$contact_name.'" >Chat</a></span></h6>
+</tr>
+  ';}
+                        }
+ 
                         }
                         echo '
                         </tbody>
                         </table>
                         ';
+
+
+
+
+
                     }
+                    
+
+
                 
                     else{
+
                         echo '
                         <h1 style="text-align:center">No conversations Yet.</h1>
                         ';
                     }
-                }
+                
                 ?>
            
             <!-- <tbody>
@@ -283,13 +433,19 @@ $conn = mysqli_connect("localhost", "root", "", "bookstore");
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     $contact_id = $_POST["contact_id"];
+    if(strcmp($_SESSION['USERNAME'],$contact_id)!=0){
+
 
     $sqla = "SELECT * FROM `chat` where `username`='{$_SESSION['USERNAME']}' and `contact` = '$contact_id'";
     $resulta = mysqli_query($conn, $sqla);
     $rowsa = mysqli_num_rows($resulta);
+
+    $sqlb = "SELECT * FROM `chat` where `username`='$contact_id' and `contact`='{$_SESSION['USERNAME']}'";
+    $resultb = mysqli_query($conn, $sqlb);
+    $rowsb = mysqli_num_rows($resultb);
     
 
-    if ($rowsa == 0) {
+    if ($rowsa == 0 and $rowsb == 0) {
 
 
         $sql0 = "select * from register where email = '$contact_id'";
@@ -330,6 +486,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     </script>
     ';
     }
+}
+else{
+    echo '
+    <script>
+    alert("Error! Cannot add yourself!");
+    window.location.href = "chat.php"
+    </script>
+    ';
+}
 }
 
 ?>
