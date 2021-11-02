@@ -190,8 +190,8 @@ require('connection.php')
         natus quasi soluta aliquam quisquam eveniet dolorem vitae deleniti totam ut, laborum deserunt nulla
         adipisci autem repellendus ex libero?</p>
       <br>
-
-<div class = "card">
+<hr>
+<div class = "card" style="border:none">
       <h4 class="mb-4 card-title" style="text-align:center">Check out some of the books for sale</h4>
       <div class=" card-body row">
         <?php
@@ -211,20 +211,40 @@ require('connection.php')
           $price = $row['price'];
           $category = $row['category'];
           $image = $row['book_image'];
+          
 
           if ($category == 1) {
             $category = "Fictional";
           } elseif ($category == 2) {
             $category = "Engineering";
           }
+
+         
+         
+          
+          $conn2 = mysqli_connect("localhost", "root", "", "bookstore");
+          
+          $res2 = mysqli_query($conn2, "select * from bookimage where bookid='$bid'");
+            while($row2=mysqli_fetch_array($res2)){
+            $bookimage=$row2['image'];
+            }
+         
         ?>
 
+      
+
+
           <div class="col-sm-4 col-md-3 col-auto">
-            <div class="card mt-2 mb-3  ml-auto mr-auto" style="width: 16rem; height:16rem;">
+            <div class="card mt-2 mb-3  ml-auto mr-auto" style="width: 14rem; height:15rem; ">
               <!-- <img src="<?php echo $image; ?>" class="card-img-top" alt="Image not Available"  style="background-color:#ed2939;">
   <div class="card-body"  style="background-color:#ed2939;"> -->
-              <img src="<?php echo $image; ?>" class="card-img-top" alt="Image not Available" style="background-color:#222; color:white">
-              <div class="card-body" style="background-color:#222; color:white">
+              <!-- <img src="<?php echo $image; ?>" class="card-img-top" alt="Image not Available" style="background-color:#222; color:white"> -->
+              <?php
+              echo '
+              <img src="data:image/jpeg;base64,'.base64_encode($bookimage).'" height="100" width="100%"\>
+              ';
+              ?>
+              <div class="card-body" style="background-color:#222; color:white; margin-bottom:10%;">
                 <h6 class="card-title" style="color:white">Name: <?php echo $bookname; ?></h6>
                 <h6 class="card-title" style="color:white">Author: <?php echo $author; ?></h6>
                 <h6 class="card-title" style="color:white">Category: <?php echo $category; ?></h6>
@@ -237,6 +257,9 @@ require('connection.php')
       </div>
         </div>
 
+        <br>
+        <br>
+        <hr>
       <p class="mt-5">
         In Dashboard, user can see his favorite books, get notification, login/logout/create account/delete
         account. User can view books but to chat with the seller he has to login. To sell books, he again is

@@ -323,7 +323,7 @@
   <td>' . $contact_name . '</td><br>
   <td>' . $last_message . '</td>
   <td>' . $datetime . '</td>
-  <td><h6><span class="badge bg-danger"><a href="javascript:void(0);" onclick="deleteChat(`'.$from.'`,`'.$contact_id.'`)" >Delete</a>&nbsp;
+  <td><h6><span class="badge bg-danger"><a href="javascript:void(0);" onclick="deleteChat(`'.$from.'`,`'.$contact_id.'`)" >Delete</a>&nbsp;</span>
   <span class="badge bg-info"><a href="conversation.php?user='.$_SESSION['USERNAME'].'&contact_id='.$contact_id.'&contact_name='.$contact_name.'" >Chat</a></span></h6>
 </tr>
   ';

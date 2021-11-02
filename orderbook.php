@@ -35,6 +35,7 @@ $author = "";
 $price = "";
 $category = "";
 $rent = "";
+$description = "";
 
 while ($row = mysqli_fetch_assoc($res))
 {
@@ -43,6 +44,7 @@ while ($row = mysqli_fetch_assoc($res))
     $price = $row['price'];
     $category = $row['category'];
     $rent = $row['rent'];
+    $description = $row['description'];
         
   if ($category == 1){
     $category = "Fictional";
@@ -55,7 +57,12 @@ while ($row = mysqli_fetch_assoc($res))
 
 }
 
-
+$conn2 = mysqli_connect("localhost", "root", "", "bookstore");
+          
+$res2 = mysqli_query($conn2, "select * from bookimage where bookid='$bid'");
+  while($row2=mysqli_fetch_array($res2)){
+  $bookimage=$row2['image'];
+  }
 
 ?>
 <html lang="en">
@@ -156,7 +163,12 @@ body {margin:150;}
         <div class = "card card-body">
         <div class = "row">
         <div class = "col-sm-6">
-            <img src = "" alt = "image not available for now">
+            <!-- <img src = "" alt = "image not available for now"> -->
+            <?php 
+            echo '
+            <img src="data:image/jpeg;base64,'.base64_encode($bookimage).'" height="70%" width="100%"\>
+            ';
+            ?>
             <!-- Include here Image of the book  -->
     </div>
     <div class = "col-sm-6">
@@ -164,6 +176,7 @@ body {margin:150;}
     <h4>Author: <?php echo $author; ?></h4>
     <h4>Category: <?php echo $category; ?></h4>
     <h4>Price: Rs <?php echo $price ;?>/-</h4>
+    <h4 style="border: 1px solid black;">Description: <br><?php echo $description ;?><br></h4>
     <h4>Uploaded By: <?php echo $name; ?></h4>
 
     <!-- <a href = "checkout.php?<?php echo $bid; ?>'"><button class = "btn btn-primary" >Buy Now</button></a> -->

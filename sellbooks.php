@@ -204,6 +204,14 @@ body {margin:150;}
               </div>
             </div>
           </div>
+
+            <div class = "form-group">
+              <div class = "col-sm-6">
+                <label class="form-check-label" for="fname">Description</label><br>
+                <textarea id="desc" name="desc" rows="4" cols="50" required></textarea><br>
+              </div>
+            </div>
+          </div>
         
           <div class = "form-group">
             <div class = "col-sm-6">
@@ -260,6 +268,7 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
   $categ = $_POST['catg'];
   $auth = $_POST['author'];
   $price = $_POST['price'];
+  $desc = $_POST['desc'];
   
 
   $targetDir = "uploads/";
@@ -279,11 +288,15 @@ if ($_SERVER['REQUEST_METHOD']=='POST'){
       }
   
       
-  $sql = "INSERT INTO entrybook (`uploaded_by`,`bookid`, `book_name`, `book_image`, `author`, `category`, `price`) VALUES ('{$_SESSION['USERNAME']}','$bid','$bookname','".$fileName."','$auth','$categ','$price')";
+  $sql = "INSERT INTO entrybook (`uploaded_by`,`bookid`, `book_name`, `book_image`, `author`, `category`, `price`, `description`) VALUES ('{$_SESSION['USERNAME']}','$bid','$bookname','".$fileName."','$auth','$categ','$price','$desc')";
   mysqli_query($conn,$sql);
 
       
-
+  
+  $image = addslashes(file_get_contents($_FILES['file']['tmp_name']));
+  //you keep your column name setting for insertion. I keep image type Blob.
+  $query = "INSERT INTO bookimage (`bookid`, `image`) VALUES('$bid','$image')";  
+  mysqli_query($conn, $query);
 
 
 

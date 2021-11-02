@@ -153,7 +153,7 @@ body {
 
 <?php
 $conn = mysqli_connect("localhost", "root", "", "bookstore");
-$sql = "select * from forumnew";
+$sql = "select * from forumnew order by created DESC";
 $result = mysqli_query($conn, $sql);
 
 while($row = mysqli_fetch_assoc($result)) {

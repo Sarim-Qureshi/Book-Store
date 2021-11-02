@@ -17,8 +17,15 @@ if (require('always.php'))
 $conn = mysqli_connect("localhost", "root", "", "bookstore");
 if(isset($_GET['type']) && $_GET['type']!=''){
   $bid = $_GET['bid'];
-  $sql = "delete from entrybook where bookid = '$bid'";
-  $res = mysqli_query($conn, $sql);
+ echo '
+ <script>
+ var x = confirm("Are you sure you want to delete it?");
+ if(x==true){
+  window.location.href="deletebooks.php?bid='.$bid.'"; 
+
+}
+</script>
+ ';
 
 }
 
