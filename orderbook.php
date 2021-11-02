@@ -179,6 +179,10 @@ body {margin:150;}
     <h4 style="border: 1px solid black;">Description: <br><?php echo $description ;?><br></h4>
     <h4>Uploaded By: <?php echo $name; ?></h4>
 
+    <?php
+    if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] != '') {
+       if ($name == $_SESSION['USERNAME'])
+    { ?>
     <!-- <a href = "checkout.php?<?php echo $bid; ?>'"><button class = "btn btn-primary" >Buy Now</button></a> -->
  <h4><span class='badge bg-primary'><a href='checkout.php?bid=<?php echo $bid ?>' >Buy Now</a></span>&nbsp</h4>
 
@@ -189,6 +193,8 @@ body {margin:150;}
 
 
     <button class = "btn btn-primary" onclick="chatSeller()">Chat With the seller</button>
+  <?php }
+  } ?>
     </div>
 </div>
 </div>
