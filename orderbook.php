@@ -180,8 +180,15 @@ body {margin:150;}
     <h4>Uploaded By: <?php echo $name; ?></h4>
 
     <?php
-    if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] != '') {
-       if ($name == $_SESSION['USERNAME'])
+    // if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] != '') {
+      $sql3 = "select name from register where email = '{$_SESSION['USERNAME']}'";
+      $res4 = mysqli_query($conn, $sql3);
+      while ($row3 = mysqli_fetch_assoc($res4))
+      {
+        $sname = $row3['name'];
+      }
+
+       if ($name != $sname )
     { ?>
     <!-- <a href = "checkout.php?<?php echo $bid; ?>'"><button class = "btn btn-primary" >Buy Now</button></a> -->
  <h4><span class='badge bg-primary'><a href='checkout.php?bid=<?php echo $bid ?>' >Buy Now</a></span>&nbsp</h4>
@@ -194,7 +201,7 @@ body {margin:150;}
 
     <button class = "btn btn-primary" onclick="chatSeller()">Chat With the seller</button>
   <?php }
-  } ?>
+  // } ?>
     </div>
 </div>
 </div>
