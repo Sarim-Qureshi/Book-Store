@@ -166,7 +166,7 @@ body {margin:150;}
             <!-- <img src = "" alt = "image not available for now"> -->
             <?php 
             echo '
-            <img src="data:image/jpeg;base64,'.base64_encode($bookimage).'" height="70%" width="100%"\>
+            <img src="data:image/jpeg;base64,'.base64_encode($bookimage).'" height="300em" width="100%"\>
             ';
             ?>
             <!-- Include here Image of the book  -->
