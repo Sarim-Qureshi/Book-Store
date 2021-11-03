@@ -93,7 +93,7 @@ body {
         <div class="jumbotron jumbotron-fluid" style="margin-bottom:5%; background-color:#505050">
             <div class="container" id="jumbo">
                 <h1 class="display-4">Discussion Forum</h1>
-                <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.
+                <p class="lead">Start a discussion on any topic and discuss it with fellow geeks
                 </p>
                 <hr>
                 
@@ -274,9 +274,9 @@ while($row = mysqli_fetch_assoc($result)) {
     <footer class="bg-dark text-center text-white" style="margin-top:10%">
         <!-- Grid container -->
         <div class="container p-4 pb-0">
-            <a href="">About Us</a>
+            <a href="aboutUs.php">About Us</a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="">Contact Us</a>
+            <a href="contactUs.php">Contact Us</a>
 
 
 

@@ -88,7 +88,7 @@ body {margin:150;}
       <div class="jumbotron jumbotron-fluid">
         <div class="container" id="jumbo">
           <h1 class="display-4">Contact Us</h1>
-          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+          <p class="lead">Have any new ideas or suggestions on improving the website or any issues?<br> Feel free to contact us, we would love to hear from you</p>
         </div>
       </div>
     </section>

@@ -128,7 +128,7 @@ body {margin:150;}
       <div class="jumbotron jumbotron-fluid">
         <div class="container" id="jumbo">
           <h1 class="display-4">Sell Books</h1>
-          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+          <p class="lead">Upload your books here for sale. Make to sure provide proper image and a good description about your book</p>
         </div>
       </div>
     </section>
@@ -236,9 +236,9 @@ body {margin:150;}
     <footer class="bg-dark text-center text-white">
       <!-- Grid container -->
       <div class="container p-4 pb-0">
-        <a href="">About Us</a>
+        <a href="aboutUs.php">About Us</a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="">Contact Us</a>
+        <a href="contactUs.php">Contact Us</a>
      
      
       

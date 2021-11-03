@@ -88,7 +88,8 @@ body {margin:150;}
       <div class="jumbotron jumbotron-fluid">
         <div class="container" id="jumbo">
           <h1 class="display-4">About Us</h1>
-          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+          <p class="lead">This website was created to bring all the book lovers at one place where they can buy, sell, rent and donate books, chat with fellow book lovers and start a discussion on any topic and discuss with other geeks.</p>
+          
         </div>
       </div>
     </section>

@@ -411,9 +411,9 @@
     <footer class="bg-dark text-center text-white" style="margin-top:10%">
         <!-- Grid container -->
         <div class="container p-4 pb-0">
-            <a href="">About Us</a>
+            <a href="aboutUs.php">About Us</a>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <a href="">Contact Us</a>
+            <a href="contactUs.php">Contact Us</a>
 
 
 

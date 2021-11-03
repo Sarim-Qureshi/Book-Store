@@ -51,7 +51,12 @@ $conn = mysqli_connect("localhost","root","","bookstore");
 
         }
 
-
+        $conn2 = mysqli_connect("localhost", "root", "", "bookstore");
+          
+        $res2 = mysqli_query($conn2, "select * from bookimage where bookid='$bid'");
+          while($row2=mysqli_fetch_array($res2)){
+          $bookimage=$row2['image'];
+          }
 
 ?>
 <html lang="en">
@@ -141,8 +146,8 @@ body {margin:150;}
     <section>
       <div class="jumbotron jumbotron-fluid">
         <div class="container" id="jumbo">
-          <h1 class="display-4">Sell Books</h1>
-          <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+          <h1 class="display-4"> Change Price</h1>
+          <p class="lead">Change the price of the uploaded book.</p>
         </div>
       </div>
     </section>
@@ -185,7 +190,12 @@ body {margin:150;}
             <div class = "form-group">
               <div class = "col-sm-6">
                 <label class="form-check-label" for="fname">Book Front Page</label><br>
-               <img src = "bimage" alt = "not available"></img>
+               <!-- <img src = "bimage" alt = "not available"></img> -->
+               <?php 
+            echo '
+            <img src="data:image/jpeg;base64,'.base64_encode($bookimage).'" height="300em" width="100%"\>
+            ';
+            ?>
               </div>
             </div>
 
@@ -227,7 +237,7 @@ body {margin:150;}
         
           <div class = "form-group">
             <div class = "col-sm-6">
-              <input type = "submit" class = "btn btn-primary" value = "Submit"><br>
+              <input type = "submit" class = "btn btn-primary" value = "Change"><br>
             </div>
           </div>
 
@@ -248,9 +258,9 @@ body {margin:150;}
     <footer class="bg-dark text-center text-white">
       <!-- Grid container -->
       <div class="container p-4 pb-0">
-        <a href="">About Us</a>
+        <a href="aboutUs.php">About Us</a>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <a href="">Contact Us</a>
+        <a href="contactUs.php">Contact Us</a>
      
      
       
