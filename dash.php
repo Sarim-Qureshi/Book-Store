@@ -92,6 +92,12 @@ if(isset($_GET['type']) && $_GET['type']!=''){
             <a href="sellbooks.php"><span class="fa fa-sticky-note mr-3"></span> Sell Books</a>
           </li>
           <li>
+          <a href="rentbook.php"><span class="fa fa-sticky-note mr-3"></span> Rent Out Books</a>
+        </li>
+        <li>
+          <a href="donatebook.php"><span class="fa fa-sticky-note mr-3"></span> Donate Books</a>
+        </li>
+          <li>
             <a href="forum.php"><span class="fa fa-paper-plane mr-3"></span> Discussion Forum</a>
           </li>
           <li>
@@ -177,9 +183,13 @@ $cuby = "";
         <td><?php echo $category ?></td>
         <td><?php echo $rent ?></td>
         <td><?php echo $price ?></td>
-      <?php  echo "<td><span class='badge bg-danger'><a href='?type=delete&bid=$bid' >Delete</a></span>&nbsp;
+      <?php  echo "<td><span class='badge bg-danger'><a href='?type=delete&bid=$bid' >Delete</a></span>&nbsp;";
+      if($price!=0){
+      echo "
       <span class='badge bg-warning'><a href='changeprice.php?&bid=$bid' >Change Price</a></span>
-</td>"; ?>
+</td>";
+       }
+        ?>
 
 
 

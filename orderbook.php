@@ -176,6 +176,20 @@ body {margin:150;}
     <h4>Author: <?php echo $author; ?></h4>
     <h4>Category: <?php echo $category; ?></h4>
     <h4>Price: Rs <?php echo $price ;?>/-</h4>
+    <?php
+      if($rent == 1){
+            $conn3 = mysqli_connect("localhost", "root", "", "bookstore");
+          
+            $res3 = mysqli_query($conn3, "select * from rent where bookid='$bid'");
+              while($row3=mysqli_fetch_array($res3)){
+              $duration=$row3['duration'];
+              }
+
+              echo '
+              <h4>Duration: '.$duration.'</h4>
+              ';
+            }
+    ?>
     <h4 style="border: 1px solid black;">Description: <br><?php echo $description ;?><br></h4>
     <h4>Uploaded By: <?php echo $name; ?></h4>
 

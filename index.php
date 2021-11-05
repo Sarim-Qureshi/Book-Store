@@ -80,6 +80,12 @@ require('connection.php')
           <a href="sellbooks.php"><span class="fa fa-sticky-note mr-3"></span> Sell Books</a>
         </li>
         <li>
+          <a href="rentbook.php"><span class="fa fa-sticky-note mr-3"></span> Rent Out Books</a>
+        </li>
+        <li>
+          <a href="donatebook.php"><span class="fa fa-sticky-note mr-3"></span> Donate Books</a>
+        </li>
+        <li>
           <a href="forum.php"><span class="fa fa-paper-plane mr-3"></span> Discussion Forum</a>
         </li>
         <li>
@@ -199,9 +205,9 @@ require('connection.php')
         $conn = mysqli_connect("localhost", "root", "", "bookstore");
 
         if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] != '') {
-          $sql = "select * from entrybook where not uploaded_by= '{$_SESSION['USERNAME']}'";
+          $sql = "select * from entrybook where not uploaded_by= '{$_SESSION['USERNAME']}' and rent=0 and price!=0";
         } else {
-          $sql = "select * from entrybook";
+          $sql = "select * from entrybook where rent=0 and price!=0";
         }
         $res = mysqli_query($conn, $sql);
         while ($row = mysqli_fetch_assoc($res)) {
@@ -287,7 +293,7 @@ require('connection.php')
             </div>
             <div class="col-sm-4">
               <div class="text-sm-left text-center">
-                <button onclick="window.location.href='rent';" type="button" class="btn btn-info btn-lg ml-sm-4">
+                <button onclick="window.location.href='rentbook.php';" type="button" class="btn btn-info btn-lg ml-sm-4">
                   Learn More
                 </button>
               </div>
@@ -296,7 +302,86 @@ require('connection.php')
         </div>
       </section>
 
+      <br>
+<hr>
+<div class = "card" style="border:none">
+      <h4 class="mb-4 card-title" style="text-align:center">Check out some of the books for rent</h4>
+      <div class=" card-body row">
+        <?php
 
+        $conn = mysqli_connect("localhost", "root", "", "bookstore");
+
+        if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] != '') {
+          $sql = "select * from entrybook where not uploaded_by= '{$_SESSION['USERNAME']}' and rent=1";
+        } else {
+          $sql = "select * from entrybook where rent=1";
+        }
+        $res = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($res)) {
+          $bid = $row['bookid'];
+          $bookname = $row['book_name'];
+          $author = $row['author'];
+          $price = $row['price'];
+          $category = $row['category'];
+          $image = $row['book_image'];
+          
+
+          if ($category == 1) {
+            $category = "Fictional";
+          } elseif ($category == 2) {
+            $category = "Engineering";
+          }
+
+         
+         
+          
+          $conn2 = mysqli_connect("localhost", "root", "", "bookstore");
+          
+          $res2 = mysqli_query($conn2, "select * from bookimage where bookid='$bid'");
+            while($row2=mysqli_fetch_array($res2)){
+            $bookimage=$row2['image'];
+            }
+
+            $conn3 = mysqli_connect("localhost", "root", "", "bookstore");
+          
+            $res3 = mysqli_query($conn3, "select * from rent where bookid='$bid'");
+              while($row3=mysqli_fetch_array($res3)){
+              $duration=$row3['duration'];
+              }
+         
+        ?>
+
+      
+
+
+          <div class="col-sm-4 col-md-3 col-auto">
+            <div class="card mt-2 mb-3  ml-auto mr-auto" style="width: 14rem; height:15rem; ">
+              <!-- <img src="<?php echo $image; ?>" class="card-img-top" alt="Image not Available"  style="background-color:#ed2939;">
+  <div class="card-body"  style="background-color:#ed2939;"> -->
+              <!-- <img src="<?php echo $image; ?>" class="card-img-top" alt="Image not Available" style="background-color:#222; color:white"> -->
+              <?php
+              echo '
+              <img src="data:image/jpeg;base64,'.base64_encode($bookimage).'" height="100" width="100%"\>
+              ';
+              ?>
+              <div class="card-body" style="background-color:#222; color:white; margin-bottom:10%;">
+                <h6 class="card-title" style="color:white">Name: <?php echo $bookname; ?></h6>
+                <h6 class="card-title" style="color:white">Author: <?php echo $author; ?></h6>
+                <h6 class="card-title" style="color:white">Category: <?php echo $category; ?></h6>
+                <h6 class="card-title" style="color:white">Rs: <?php echo $price; ?>/-</h6>
+                <h6 class="card-title" style="color:white">Duration: <?php echo $duration; ?></h6>
+                <h5><span class='badge bg-primary'><a href='orderbook.php?bid=<?php echo $bid ?>'>Check</a></span>&nbsp</h5>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
+      </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <hr>
 
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis assumenda inventore voluptate magnam
@@ -404,6 +489,78 @@ require('connection.php')
         quisquam saepe cupiditate odio ipsam, eius laudantium assumenda modi rerum fugiat excepturi?
 
       </p>
+      <hr>
+<div class = "card" style="border:none">
+      <h4 class="mb-4 card-title" style="text-align:center">A book for donation</h4>
+      <div class=" card-body row">
+        <?php
+
+        $conn = mysqli_connect("localhost", "root", "", "bookstore");
+
+        if (isset($_SESSION['LOGIN']) && $_SESSION['LOGIN'] != '') {
+          $sql = "select * from entrybook where not uploaded_by= '{$_SESSION['USERNAME']}' and rent=0 and price=0 order by rand() limit 1";
+        } else {
+          $sql = "select * from entrybook where rent=0 and price==0 order by rand() limit 1";
+        }
+        $res = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($res)) {
+          $bid = $row['bookid'];
+          $bookname = $row['book_name'];
+          $author = $row['author'];
+          $price = $row['price'];
+          $category = $row['category'];
+          $image = $row['book_image'];
+          
+
+          if ($category == 1) {
+            $category = "Fictional";
+          } elseif ($category == 2) {
+            $category = "Engineering";
+          }
+
+         
+         
+          
+          $conn2 = mysqli_connect("localhost", "root", "", "bookstore");
+          
+          $res2 = mysqli_query($conn2, "select * from bookimage where bookid='$bid'");
+            while($row2=mysqli_fetch_array($res2)){
+            $bookimage=$row2['image'];
+            }
+
+         
+        ?>
+
+      
+
+
+          <div class="col-sm-4 col-md-3 col-auto mx-auto">
+            <div class="card mt-2 mb-3  ml-auto mr-auto" style="width: 14rem; height:15rem; ">
+              <!-- <img src="<?php echo $image; ?>" class="card-img-top" alt="Image not Available"  style="background-color:#ed2939;">
+  <div class="card-body"  style="background-color:#ed2939;"> -->
+              <!-- <img src="<?php echo $image; ?>" class="card-img-top" alt="Image not Available" style="background-color:#222; color:white"> -->
+              <?php
+              echo '
+              <img src="data:image/jpeg;base64,'.base64_encode($bookimage).'" height="100" width="100%"\>
+              ';
+              ?>
+              <div class="card-body" style="background-color:#222; color:white; margin-bottom:10%;">
+                <h6 class="card-title" style="color:white">Name: <?php echo $bookname; ?></h6>
+                <h6 class="card-title" style="color:white">Author: <?php echo $author; ?></h6>
+                <h6 class="card-title" style="color:white">Category: <?php echo $category; ?></h6>
+                <h6 class="card-title" style="color:white">Rs: <?php echo $price; ?>/-</h6>
+                <h5><span class='badge bg-primary'><a href='orderbook.php?bid=<?php echo $bid ?>'>Check</a></span>&nbsp</h5>
+              </div>
+            </div>
+          </div>
+        <?php } ?>
+      </div>
+        </div>
+
+        <br>
+        <br>
+        <hr>
+        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa in ratione aperiam distinctio, ullam harum hic nemo nam omnis iste eos voluptates odit blanditiis ea numquam! Excepturi voluptate est reprehenderit? Blanditiis possimus voluptate eaque corporis velit, in provident dolorem officiis commodi aliquam aperiam pariatur odit, aspernatur nemo. Dolor, numquam expedita.</p>
 
     </div>
 
